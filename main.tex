@@ -1,0 +1,61 @@
+\documentclass{report}
+
+\usepackage[french]{babel}
+\usepackage{fancyhdr}
+
+
+\usepackage{graphicx}
+\usepackage{geometry}
+% \usepackage{emptypage}
+%
+% \usepackage{subfigure}
+% \usepackage{float}
+% \usepackage{acronym}
+
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+}
+
+\newcommand{\projettheme}{
+  Étude et mise en œuvre d'une plateforme web et mobile pour la création
+  collaborative et le partage d'arbres généalogiques à Mazala-Firm
+}
+\newcommand{\projetauthor}{
+  NANDI Samuel Exaucé \\ ONIANGUE-DESO Dieu-veille Frédy
+}
+
+% \title{\projettheme}
+% \date{Mai 2024}
+
+
+\chead{\projettheme}
+\lfoot{\projetauthor}
+\cfoot{Année Académique 2023-2024}
+\rfoot{center of the footer!}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\pagestyle{fancy}
+
+\begin{document}
+
+  \pagenumbering{roman}
+
+  \include{pageDeGarde}
+
+  \include{dedicace}
+  \addcontentsline{toc}{chapitere}{Dédicace}
+
+  \include{remerciements}
+  \addcontentsline{toc}{chapitere}{Remerciements}
+
+  \listoffigures
+  \listoftables
+  \tableofcontents
+
+  % \include{abreviationsSigles}
+
+  \pagenumbering{number}
+
+\end{document}
