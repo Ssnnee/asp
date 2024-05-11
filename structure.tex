@@ -1,3 +1,4 @@
+\part{Présentation Générale}
 \chapter{Structure d’Accueil et le Sujet}
 \section{Structure d’Accueil}
 \subsection{Historique}
@@ -69,10 +70,39 @@ Voici les missions de \firm :
 \subsection{Organigramme Général}
 L’organigramme de \firm est bien structuré et se présente comme suit :
 
-
-
-
-
+\begin{figure}[h]
+  \centering
+  \begin{forest}
+    for tree={
+      draw,
+      align=center,
+      minimum height=2em,
+      minimum width=4em,
+      grow'=0,
+      parent anchor=south,
+      child anchor=north,
+      edge path={
+        \noexpand\path[\forestoption{edge}]
+        (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-5pt) -|
+        (\forestove{name}.child anchor)\forestoption{edge label};
+      },
+    },
+    forked edges,
+    [ Directeur général
+        [ Sécrétaire ]
+        [Responsable comptable]
+        [Responsable marketing
+          [Community manager]
+        ]
+        [Responsable technique
+          [Equipe de développement]
+          [Equipe de designers]
+        ]
+    ]
+    \node [draw, fit=(current bounding box.south east) (current bounding box.north west), inner sep=10pt] {};
+  \end{forest}
+  \caption{Organigramme }
+\end{figure}
 
 \subsection{Attributions des structures}
 L’organigramme ci-dessus illustre le rôle crucial que jouent chaque poste et
@@ -272,4 +302,58 @@ sur l’accessibilité, la convivialité et la sécurité des données, ce proje
 devenir une référence incontournable dans le domaine de la généalogie numérique.
 Il contribue ainsi à enrichir le patrimoine familial et culturel de notre société. \\
 
+\section{Concepts liés au sujet}
+Le sujet que nous abordons englobe une série de concepts clés qui sont au cœur
+de notre projet de création collaborative et de partage d’arbres généalogiques.
+Ces concepts incluent :
+\begin{itemize}
+  \item Généalogie : il s’agit de l’étude des relations de parenté et de la
+    succession des générations au sein d’une famille. La généalogie est le
+    fondement même de notre projet, offrant aux individus la possibilité de
+    découvrir et de préserver leur héritage familial.
 
+  \item Collaboration en ligne : Ce terme désigne le processus de travail d’équipe
+    visant à atteindre un objectif commun par le biais de plateformes numériques.
+    Dans notre cas, la collaboration en ligne revêt une importance particulière,
+    car elle permet aux membres de la famille de contribuer à la construction et
+    à l’enrichissement des arbres généalogiques, peu importe leur emplacement géographique.
+
+  \item Plateformes web et mobiles : nous envisageons de développer une plateforme
+    accessible à la fois sur le web et sur les appareils mobiles, offrant ainsi
+    aux utilisateurs la flexibilité nécessaire pour accéder à leurs données
+    familiales où qu’ils se trouvent. Cette approche garantit une expérience
+    utilisateur optimale et facilite le partage d’informations entre les membres de la famille.
+
+  \item Sécurité des données : La protection des informations personnelles des
+    utilisateurs et des données sensibles relatives à l’histoire familiale est
+    une priorité pour notre projet. Nous mettrons en place des mesures de sécurité
+    robustes pour garantir la confidentialité et l’intégrité des données, tout en
+    offrant aux utilisateurs un contrôle total sur leurs informations.
+
+  \item Partage de données : nous accordons une grande importance au partage
+    efficace et sécuritaire des données entre les membres de la famille. Notre
+    plateforme facilitera ce processus en permettant aux utilisateurs d’échanger
+    et de transmettre des informations de manière transparente, tout en respectant
+    les préférences de confidentialité de chacun.
+
+  \item Analyse des données : en plus de permettre la création et le partage
+    d’arbres généalogiques, notre plateforme offrira des outils d’analyse avancés
+    pour que les utilisateurs puissent explorer et comprendre leur histoire familiale
+    de manière approfondie. Des fonctionnalités telles que des statistiques
+    démographiques, des tendances généalogiques et des analyses de santé familiale
+    seront intégrées pour fournir des informations précieuses aux utilisateurs et
+    les aider à mieux comprendre leur lignée et leur héritage.
+
+  \item Accessibilité : enfin, nous nous engageons à rendre notre plateforme
+    accessible à tous, y compris aux personnes ayant des besoins spécifiques en
+    matière d’accessibilité. Nous veillerons à ce que l’interface utilisateur soit
+    intuitive et facile à utiliser pour que chacun puisse profiter pleinement de
+    l’expérience généalogique, quel que soit son niveau de compétences technologiques.
+
+\end{itemize}
+
+Ces concepts joueront un rôle essentiel dans la conception et la mise en œuvre
+de notre plateforme. Ils guideront nos choix technologiques et nos stratégies de
+développement. En intégrant ces principes fondamentaux, nous espérons créer une
+solution innovante et inclusive qui répond aux besoins variés des utilisateurs
+tout en préservant l’histoire familiale pour les générations futures.
