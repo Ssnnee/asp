@@ -21,3 +21,8 @@ biber main
 pdflatex main.tex
 ```
 
+## Todos
+- [ ] Mettre les taches correspondantes au projet donc le diagramme de Gantt
+- [ ] Ajouter les détails techniques si oublié
+- [ ] Mettre les abréviations dans un tableau pour une meilleure lisibilité
+- [ ] Ajouter les captures d'écran de l'application
