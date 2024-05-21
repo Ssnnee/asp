@@ -1,21 +1,119 @@
 \documentclass{report}
+\usepackage[T1]{fontenc}
 
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliographie.bib}
+
+\usepackage{titlesec}
 \usepackage[french]{babel}
 \usepackage{fancyhdr}
-
+\usepackage{dirtytalk}
 
 \usepackage{graphicx}
 \usepackage{geometry}
-% \usepackage{emptypage}
-%
-% \usepackage{subfigure}
-% \usepackage{float}
-% \usepackage{acronym}
+\usepackage{float}
+
+\usepackage{tabularx}
+\usepackage{diagbox}
+\usepackage{multirow}
+
+\usepackage{hyperref}
+
+\usepackage[edges]{forest}
+\usetikzlibrary{fit}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{tikz-uml}
+\usepackage{pgf-umlsd}
+\usetikzlibrary{positioning}
+\usepackage{pgfgantt}
+\usepackage{rotating}
+
+\usepackage{amssymb}
+\usepackage{pifont}
+
+\usetikzlibrary{%
+  arrows,%
+  calc,
+  shapes,
+  arrows,
+  shapes.misc,
+  shapes.arrows,%
+  chains,%
+  matrix,%
+  positioning,%
+  scopes,%
+  decorations.pathmorphing,%
+  shadows%
+}
+\usepackage{amsmath}
+\usepackage{relsize}
+
+\newcommand{\cmark}{\textcolor{green}{\ding{51}}} % check mark
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}} % cross mark
+
+% \newcommand{\greencheck}{\textcolor{green}{\ding{51}}} % Green check mark
+% \newcommand{\redcheck}{\textcolor{red}{\ding{55}}}   % Red cross mark
+
+%Used to draw gantt charts, which I will use for the calendar.
+%Let's define some awesome new ganttchart elements:
+\newganttchartelement{orangebar}{
+    orangebar/.style={
+        inner sep=0pt,
+        draw=red!66!black,
+        very thick,
+        top color=white,
+        bottom color=orange!80
+    },
+    orangebar label font=\slshape,
+    orangebar left shift=.1,
+    orangebar right shift=-.1
+}
+
+\newganttchartelement{bluebar}{
+    bluebar/.style={
+        inner sep=0pt,
+        draw=purple!44!black,
+        very thick,
+        top color=white,
+        bottom color=blue!80
+    },
+    bluebar label font=\slshape,
+    bluebar left shift=.1,
+    bluebar right shift=-.1
+}
+
+\newganttchartelement{greenbar}{
+    greenbar/.style={
+        inner sep=0pt,
+        draw=green!50!black,
+        very thick,
+        top color=white,
+        bottom color=green!80
+    },
+    greenbar label font=\slshape,
+    greenbar left shift=.1,
+    greenbar right shift=-.1
+}
+
+\usepackage{pgfgantt}
+
+\usetikzlibrary{shapes.geometric, arrows, trees, positioning, fit, calc}
+
+% \usepackage{biblatex}
+% \addbibresource{bibliographie.bib}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\makeatletter\@addtoreset{chapter}{part}\makeatother
+
+
+\usepackage[nolist]{acronym}
 
 
 \geometry{
   a4paper,
-  total={170mm,257mm},
+  margin=1in
 }
 
 \newcommand{\projettheme}{
@@ -23,39 +121,102 @@
   collaborative et le partage d'arbres généalogiques à Mazala-Firm
 }
 \newcommand{\projetauthor}{
-  NANDI Samuel Exaucé \\ ONIANGUE-DESO Dieu-veille Frédy
+  M. Samuel Exaucé NANDI \\
+  M. Dieu-veille Frédy ONIANGUE-DESO
 }
+
+\newcommand{\firm}{
+  Mazala-Firm
+}
+
 
 % \title{\projettheme}
 % \date{Mai 2024}
 
 
+\fancyhf{}
 \chead{\projettheme}
-\lfoot{\projetauthor}
-\cfoot{Année Académique 2023-2024}
-\rfoot{center of the footer!}
+\lfoot{LPGL: Samuel Exaucé NANDI \& Dieu-veille Frédy ONIANGUE-DESO \qquad  2023-2024}
+\rfoot{\number\value{page}}
+
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \pagestyle{fancy}
 
+\newcommand{\mazf}{
+  Mazala-Firm
+}
+
+\fancypagestyle{plain}{
+  \fancyhf{} % Clear all header and footer fields
+  \chead{\projettheme}
+  \lfoot{LPGL: Samuel Exaucé NANDI \& Dieu-veille Frédy ONIANGUE-DESO \qquad  2023-2024}
+  \rfoot{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
 \begin{document}
 
-  \pagenumbering{roman}
+\pagenumbering{roman}
 
-  \include{pageDeGarde}
+\include{pageDeGarde}
 
-  \include{dedicace}
-  \addcontentsline{toc}{chapitere}{Dédicace}
+\include{dedicace}
 
-  \include{remerciements}
-  \addcontentsline{toc}{chapitere}{Remerciements}
+\include{remerciements}
 
-  \listoffigures
-  \listoftables
-  \tableofcontents
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+% Ajouter le sommaire%
 
-  % \include{abreviationsSigles}
+\chapter*{Sommaire}
+\addcontentsline{toc}{chapter}{Sommaire}
+\noindent\begin{tabularx}{\textwidth}{Xr}
+  \textbf{Introduction} \dotfill \pageref{chap:introduction} \\
 
-  \pagenumbering{number}
+  \textbf{Première Partie : Présentation générale du magasin DC} \dotfill \pageref{part:presentation} \\
+
+  \textbf{Deuxième Partie : Analyse et conception} \dotfill \pageref{part:analyse-et-conception} \\
+
+  \textbf{Troisième Partie : Evaluation et Réalisation} \dotfill \pageref{part:evaluation-et-realisation} \\
+
+  \textbf{Conclusion} \dotfill \pageref{chap:conclusion} \\
+
+  \textbf{Table des matières} \dotfill \pageref{sec:tableofcontents} \\
+
+  \textbf{Bibliographie} \dotfill \pageref{sec:bibliographie} \\
+
+  \textbf{Webographie} \dotfill \pageref{sec:webographie} \\
+\end{tabularx}
+
+\include{abreviationsSigles}
+
+
+\pagenumbering{arabic}
+\include{introduction}
+
+\newpage
+
+\include{structure}
+
+\include{analyseConception}
+
+\include{evaluationRealisation}
+
+\include{conclusion}
+
+
+\tableofcontents
+\label{sec:tableofcontents}
+
+\printbibliography
+\label{sec:bibliographie}
+
+\chapter*{Webographie}
+\label{sec:webographie}
+\addcontentsline{toc}{chapter}{Webographie}
 
 \end{document}

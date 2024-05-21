@@ -14,9 +14,10 @@ avec pdflatex.
 ```shell
 pdflatex main.tex
 ```
-If you add a bibliography reference, run
+If you just add a bibliography reference, run
 ```shell
 pdflatex main.tex
 biber main
 pdflatex main.tex
 ```
+

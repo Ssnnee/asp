@@ -1,0 +1,112 @@
+Dans cette section, nous explorerons les outils et
+les processus utilisés dans notre approche de développement pour la création de la plateforme web et
+mobile dédiée à la généalogie. Nous mettrons l’accent sur le langage de modélisation et les
+méthodologies de développement.
+Nous commencerons par une exploration du langage de modélisation
+ \ac{UML} , une norme industrielle largement utilisée pour la représentation
+visuelle des systèmes logiciels. Cette présentation comprendra une vue d’ensemble d’UML, ainsi
+qu’une discussion sur les différents types de diagrammes utilisés pour modéliser les aspects statiques
+et dynamiques d’un système logiciel.
+Nous aborderons ensuite le processus de développement, en présentant deux approches
+spécifiques : \ac{UP} et \ac{2TUP}. Ces méthodologies offrent des cadres flexibles
+et évolutifs pour la gestion de projet et le développement logiciel. Chacune
+présente ses propres avantages et caractéristiques. Nous explorerons également la relation entre le
+2TUP et UML. Nous soulignerons l’importance de l’intégration entre la méthodologie de
+développement et le langage de modélisation pour assurer le succès du projet.
+Notre approche méthodologique combine une compréhension approfondie du langage de
+modélisation avec une méthode de développement robuste. Elle vise à garantir la cohérence, la qualité
+et la réussite de notre projet de création de la plateforme généalogique pour \firm.
+
+  \item L’architecture du système : La manière dont les différents composants
+    de la plateforme seront structurés et interconnectés pour assurer une
+    performance optimale et une évolutivité. Nous utilisons une architecture de
+    type monolithe modulaire basée sur Next.js, avec des modules indépendants
+    pour la gestion des utilisateurs, des arbres généalogiques, et des
+    interactions de l'utilisateur. Docker est utilisé pour la containerisation
+
+
+ \begin{figure}[htbp]
+  \centering
+  \tikzstyle{startstop} = [draw, ellipse, fill=black, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=black!10]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=yellow!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+  \begin{tikzpicture}[node distance=2cm]
+
+    \node (start) [startstop] {Début};
+    \node (login) [process, below of=start] {Se connecter};
+    \node (displayNav) [process, below of=login] {Afficher barre de navigation};
+    \node (decision1) [decision, below of=displayNav, yshift=-0.5cm] {Créer un arbre ?};
+    \node (createTree) [process, below of=decision1, yshift=-1.5cm] {Créer un arbre};
+    \node (decision2) [decision, below of=createTree, yshift=-0.5cm] {Modifier un arbre ?};
+    \node (modifyTree) [process, below of=decision2, yshift=-1.5cm] {Modifier un arbre};
+    \node (decision3) [decision, below of=modifyTree, yshift=-0.5cm] {Visualiser un arbre ?};
+    \node (viewTree) [process, below of=decision3, yshift=-1.5cm] {Visualiser un arbre};
+    \node (decision4) [decision, below of=viewTree, yshift=-0.5cm] {Supprimer un arbre ?};
+    \node (deleteTree) [process, below of=decision4, yshift=-1.5cm] {Supprimer un arbre};
+    \node (stop) [startstop, below of=deleteTree, yshift=-0.5cm] {Fin};
+
+    \draw [arrow] (start) -- (login);
+    \draw [arrow] (login) -- (displayNav);
+    \draw [arrow] (displayNav) -- (decision1);
+    \draw [arrow] (decision1) -- node[anchor=east] {oui} (createTree);
+    \draw [arrow] (decision1) -- node[anchor=south] {non} (decision2);
+    \draw [arrow] (createTree) -- (decision2);
+    \draw [arrow] (decision2) -- node[anchor=east] {oui} (modifyTree);
+    \draw [arrow] (decision2) -- node[anchor=south] {non} (decision3);
+    \draw [arrow] (modifyTree) -- (decision3);
+    \draw [arrow] (decision3) -- node[anchor=east] {oui} (viewTree);
+    \draw [arrow] (decision3) -- node[anchor=south] {non} (decision4);
+    \draw [arrow] (viewTree) -- (decision4);
+    \draw [arrow] (decision4) -- node[anchor=east] {oui} (deleteTree);
+    \draw [arrow] (decision4) -- node[anchor=south] {non} (stop);
+    \draw [arrow] (deleteTree) -- (stop);
+
+  \end{tikzpicture}
+
+  \caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
+\end{figure}   et faciliter le déploiement et la scalabilité.
+
+
+pourquoi le diagramme de classe ne veut pas être entre les deux sous section alors même que j'ai placé une \newine
+
+
+
+
+\begin{figure}[htbp]
+\centering
+\tikzstyle{startstop} = [draw, circle, fill=black, text=white, minimum width=1cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{stop} = [draw, circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, path picture={
+\draw[black, thick] (path picture bounding box.south west) -- (path picture bounding box.north east);
+\draw[black, thick] (path picture bounding box.north west) -- (path picture bounding box.south east);
+}]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{tikzpicture}[node distance=2.5cm]
+
+\node (start) [startstop] {Début};
+\node (login) [process, below of=start] {Se connecter};
+\node (displayDecision) [decision, below=1.5cm of login] {};
+\node (createTree) [process, left=2cm of displayDecision] {Créer un arbre};
+\node (modifyTree) [process, below left=1.5cm and -0.5cm of displayDecision] {Modifier un arbre};
+\node (viewTree) [process, below right=1.5cm and -0.5cm of displayDecision] {Visualiser un arbre};
+\node (deleteTree) [process, right=2cm of displayDecision] {Supprimer un arbre};
+\node (stop) [stop, below=of displayDecision] {Fin};
+
+\draw [arrow] (start) -- (login);
+\draw [arrow] (login) -- (displayDecision);
+\draw [arrow] (displayDecision) -| node[anchor=south, near start] {oui} (createTree);
+\draw [arrow] (displayDecision) -- node[anchor=west] {non} (modifyTree);
+\draw [arrow] (displayDecision) -- node[anchor=west] {non} (viewTree);
+\draw [arrow] (displayDecision) -| node[anchor=south, near start] {non} (deleteTree);
+\draw [arrow] (createTree) |- (stop);
+\draw [arrow] (modifyTree) |- (stop);
+\draw [arrow] (viewTree) |- (stop);
+\draw [arrow] (deleteTree) |- (stop);
+
+\end{tikzpicture}
+
+\caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
+\end{figure}
