@@ -1,7 +1,6 @@
 *.lof
 *.log
 *.lot
-*.tex
 *.toc
 *.aux
 *.bbl
