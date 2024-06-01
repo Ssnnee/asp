@@ -1,5 +1,4 @@
-\documentclass{report}
-\usepackage[T1]{fontenc}
+\documentclass[12pt, french]{extreport}
 
 \usepackage[backend=biber]{biblatex}
 \addbibresource{bibliographie.bib}
@@ -8,6 +7,8 @@
 \usepackage[french]{babel}
 \usepackage{fancyhdr}
 \usepackage{dirtytalk}
+% \usepackage[fontsize=12pt]{scrextend}
+% 8pt, 9pt, 11pt, 12pt, 14pt, 17pt, and 20pt.
 
 \usepackage{graphicx}
 \usepackage{geometry}
@@ -31,6 +32,9 @@
 
 \usepackage{amssymb}
 \usepackage{pifont}
+\usepackage{fancybox}
+\usepackage{lmodern}
+\usepackage{tcolorbox}
 
 \usetikzlibrary{%
   arrows,%
@@ -108,14 +112,16 @@
 \makeatletter\@addtoreset{chapter}{part}\makeatother
 
 
-% \usepackage[nolist]{acronym}
-\usepackage{acronym}
+\usepackage[nolist]{acronym}
+% \usepackage{acronym}
 
 
 \geometry{
-  a4paper,
-  margin=1in
-}
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
 
 \newcommand{\projettheme}{
   Étude et mise en œuvre d'une plateforme web et mobile pour la création
@@ -178,7 +184,7 @@
 \noindent\begin{tabularx}{\textwidth}{Xr}
   \textbf{Introduction} \dotfill \pageref{chap:introduction} \\
 
-  \textbf{Première Partie : Présentation générale du magasin DC} \dotfill \pageref{part:presentation} \\
+  \textbf{Première Partie : Présentation générale de Mazala-Firm} \dotfill \pageref{part:presentation} \\
 
   \textbf{Deuxième Partie : Analyse et conception} \dotfill \pageref{part:analyse-et-conception} \\
 
@@ -219,5 +225,44 @@
 \chapter*{Webographie}
 \label{sec:webographie}
 \addcontentsline{toc}{chapter}{Webographie}
+\begin{itemize}
+    \item \textbf{TypeScript Documentation} \\
+    Lien: \url{https://www.typescriptlang.org/docs/} \\
+    Description: Documentation officielle pour TypeScript, un sur-ensemble typé de JavaScript qui se compile en JavaScript pur.
+
+    \item \textbf{Next.js Documentation} \\
+    Lien: \url{https://nextjs.org/docs} \\
+    Description: Documentation officielle pour Next.js, un framework React pour la production.
+
+    \item \textbf{Prisma Getting Started} \\
+    Lien: \url{https://www.prisma.io/docs/getting-started} \\
+    Description: Guide de démarrage pour Prisma, un ORM (Object Relational Mapping) moderne pour Node.js et TypeScript.
+
+    \item \textbf{LaTeX Project Documentation} \\
+    Lien: \url{https://www.latex-project.org/help/documentation/} \\
+    Description: Documentation officielle du projet LaTeX, un système de composition de documents de haute qualité.
+
+    \item \textbf{Lucia Auth Documentation} \\
+    Lien: \url{https://lucia-auth.com/} \\
+    Description: Documentation pour Lucia, une solution d'authentification moderne et sécurisée pour les applications web.
+
+    \item \textbf{shadcn/ui Documentation} \\
+    Lien: \url{https://ui.shadcn.com/docs} \\
+    Description: Documentation pour shadcn/ui, une bibliothèque de composants UI modernes pour React.
+
+    \item \textbf{Docker Guides} \\
+    Lien: \url{https://docs.docker.com/guides/} \\
+    Description: Guides et documentation officielle pour Docker, une plateforme de conteneurisation.
+
+    \item \textbf{Git Documentation} \\
+    Lien: \url{https://git-scm.com/doc} \\
+    Description: Documentation officielle de Git, un système de contrôle de version distribué.
+
+    \item \textbf{TikZ-UML User Guide} \\
+    Lien: \url{https://perso.ensta-paris.fr/~kielbasi/tikzuml/var/files/html/web-tikz-uml-userguide.html} \\
+    Description: Guide utilisateur pour TikZ-UML, une extension de TikZ pour dessiner des diagrammes UML en LaTeX.
+\end{itemize}
+
+
 
 \end{document}

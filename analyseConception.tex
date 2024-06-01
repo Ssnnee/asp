@@ -123,7 +123,7 @@ d’information. Parmi celles-ci, on compte :
 
 \begin{table}[htbp]
   \centering
-  \begin{tabular}{|p{3.88cm}|c|c|c|c|c|}
+  \begin{tabular}{|p{4.5cm}|c|c|c|c|c|}
     \hline
     \textbf{\diagbox{Critères}{Méthodes}}& \textbf{Cartésiennes} & \textbf{Systémiques} & \textbf{Agiles} & \textbf{Objet} & \textbf{Formelles} \\ \hline
     Itératif & \cmark    & \cmark   & \cmark  & \cmark   & \xmark   \\ \hline
@@ -425,7 +425,7 @@ et aux technologies utilisées pour développer la plateforme. Cela inclut :
     d’autres systèmes et services existants. Les pages et composants sont
     testés pour être compatibles avec les principaux navigateurs
     (Chrome, Firefox, Safari) et optimisés pour les appareils mobiles. Docker
-    permet de facilement scaler l'application pour gérer une augmentation du
+    permet de facilement faire évoluer l'application pour gérer une augmentation du
     nombre d'utilisateurs. Les mesures de sécurité incluent l'utilisation de
     HTTPS, la gestion des sessions sécurisées, et des pratiques de développement
     sécurisées pour éviter les vulnérabilités courantes;
@@ -456,6 +456,8 @@ généalogiques à Mazala-Firm, les acteurs identifiés comprennent :
 \begin{itemize}
   \item les membres;
 
+  \item les créateurs d'arbre;
+
   \item les administrateurs;
 
   \item et les visiteurs.
@@ -474,18 +476,21 @@ notre écosystème numérique.
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}[node distance=2cm, every node/.style={inner sep=3pt}]
-    \node (system) [draw, rectangle, minimum width=2.5cm, text width=2cm, align=center] {Système};
+    \node (system) [draw, rectangle, minimum width=2.5cm, text width=2cm, align=center] {: Système};
     \node (utilisateurs) [above left=of system] {\includegraphics[width=1cm]{images/stickman.png}};
     \node (admins) [above right=of system] {\includegraphics[width=1cm]{images/stickman.png}};
-    \node (visiteurs) [below=of system] {\includegraphics[width=1cm]{images/stickman.png}};
+    \node (visiteurs) [below left=of system] {\includegraphics[width=1cm]{images/stickman.png}};
+    \node (owner) [below right=of system] {\includegraphics[width=1cm]{images/stickman.png}};
 
     \draw[->] (utilisateurs) -- node[anchor=south] {1..*} (system);
+    \draw[->] (owner) -- node[anchor=south] {1..*} (system);
     \draw[->] (admins) -- node[anchor=east] {1..*} (system);
     \draw[->] (visiteurs) -- node[anchor=east] {1..*} (system);
 
-    \node[right=0.3cm of utilisateurs] {Membre};
-    \node[right=0.3cm of admins] {Administrateurs};
-    \node[right=0.3cm of visiteurs] {Visiteurs};
+    \node[below=0.3cm of utilisateurs] {Membre};
+    \node[below=0.3cm of owner] {Créateur d'arbre};
+    \node[below=0.3cm of admins] {Administrateurs};
+    \node[below=0.3cm of visiteurs] {Visiteurs};
   \end{tikzpicture}
   \caption{Diagramme de contexte statique}
 \end{figure}
@@ -493,31 +498,19 @@ notre écosystème numérique.
 
 \subsubsection{Identification des cas d'utilisation}
 Les cas d'utilisation décrivent les interactions entre les acteurs et le
-système afin atteindre des objectifs spécifiques. Pour notre sytème, on retouve :
+système afin d'atteindre des objectifs spécifiques. Pour notre système, on retrouve :
 
 \begin{itemize}
+  \item Créer un compte
+  \item S'authentifier
   \item Gérer un arbre généalogique;
-
   \item Gérer des membres;
-
-  \item Modifier les informations des membres;
-
   \item Consulter un arbre généalogique;
-
   \item Rechercher des membres de la famille;
-
-  \item Accorder des droits d'accès et de confidentialité;
-
+  \item Accorder des droits d'accès;
   \item Partager un arbre généalogique;
-
-  \item Collaborer à la création d'un arbre généalogique;
-
-  \item Gérer un profile;
-
   \item Administrer le système.
-
 \end{itemize}
-
 
 \subsubsection{Relation entre les cas d'utilisation (Use case)}
 Pour affiner la représentation des interactions entre les différents cas
@@ -527,13 +520,15 @@ les différentes fonctionnalités du système. Voici comment elles s’appliquen
 dans notre contexte :
 
 \begin{itemize}
-
   \item Inclusion (\say{include}) : cette relation est utilisée lorsqu’un cas
     d’utilisation de base incorpore explicitement un autre cas d’utilisation,
     de manière obligatoire. Dans notre système, nous pourrions par exemple
     inclure le cas d’utilisation \say {Modifier les informations des membres}
     dans le cas d’utilisation \say{Gérer des membres}, car la modification des
     informations des membres fait partie intégrante de la gestion des membres.
+    De même, le cas d'utilisation \say{S'authentifier} est inclus dans tous
+    les cas d'utilisation des membres et de l'administrateur, car ils doivent
+    être authentifiés avant de réaliser toute autre action.
 
   \item Extension (\say{extend}) : cette relation est utilisée lorsqu’une
     utilisation de base incorpore implicitement un autre cas d’utilisation, de
@@ -550,54 +545,55 @@ dans notre contexte :
     généalogique inclut aussi la gestion des membres qui en font partie. Les
     fonctionnalités de gestion des membres peuvent donc être considérées comme
     une spécialisation du cas d’utilisation de gestion d’un arbre généalogique.
-
 \end{itemize}
-
 
 \newpage
 \begin{figure}
   \begin{tikzpicture}
 
 % Actors
-\umlactor[x=-3, y=3]{Visiteur}
-\umlactor[x=-3, y=1]{Membre}
-\umlactor[x=-3, y=-2]{Admin}
+\umlactor[x=-3, y=4]{Visiteur}
+\umlactor[x=-3, y=2]{Membre}
+\umlactor[x=-3, y=-1]{Créateur d'arbre}
+\umlactor[x=-3, y=-3]{Admin}
 
 % Use Cases
-\begin{umlsystem}[x=0, y=0, fill=white]{Plateforme Mazala-Firm}
-  \umlusecase[x=0, y=4]{Consulter arbre}
-  \umlusecase[x=0, y=2]{Rechercher membres}
-  \umlusecase[x=0, y=0]{Partager arbre}
-  \umlusecase[x=5, y=4]{Gérer arbre}
-  \umlusecase[x=5, y=2]{Gérer membres}
-  \umlusecase[x=5, y=0]{Modifier infos}
-  \umlusecase[x=10, y=4]{Collaborer arbre}
-  \umlusecase[x=10, y=2]{Accorder droits}
-  \umlusecase[x=10, y=0]{Gérer profil}
-  \umlusecase[x=10, y=-2]{Administrer}
+\begin{umlsystem}[x=0, y=0, fill=white]{Système}
+  \umlusecase[x=3, y=5]{Créer compte}
+  \umlusecase[x=3, y=4]{Consulter arbre}
+  \umlusecase[x=3, y=3]{Rechercher membres}
+  \umlusecase[x=3, y=2]{Gérer membres}
+  \umlusecase[x=3, y=1]{Partager arbre}
+  \umlusecase[x=3, y=0]{Accorder droits}
+  \umlusecase[x=3, y=-1]{Gérer arbre}
+  \umlusecase[x=3, y=-2]{Administrer}
+  \umlusecase[x=10, y=1]{S'authentifier}
 \end{umlsystem}
 
 % Associations
 \umlassoc{Visiteur}{usecase-1}
 \umlassoc{Visiteur}{usecase-2}
+\umlassoc{Visiteur}{usecase-3}
 \umlassoc{Membre}{usecase-3}
 \umlassoc{Membre}{usecase-4}
 \umlassoc{Membre}{usecase-5}
-\umlassoc{Membre}{usecase-6}
-\umlassoc{Membre}{usecase-7}
-\umlassoc{Membre}{usecase-8}
-\umlassoc{Membre}{usecase-9}
-\umlassoc{Admin}{usecase-10}
+\umlassoc{Créateur d'arbre}{usecase-6}
+\umlassoc{Créateur d'arbre}{usecase-7}
+\umlassoc{Admin}{usecase-8}
 
 % Relationships
-\umlinclude{usecase-4}{usecase-5}
-\umlinclude{usecase-5}{usecase-6}
-\umlVHextend{usecase-3}{usecase-8}
-\umlinherit{usecase-5}{usecase-4}
+\umlinclude{usecase-4}{usecase-9}
+\umlinclude{usecase-5}{usecase-9}
+\umlinclude{usecase-6}{usecase-9}
+\umlinclude{usecase-7}{usecase-9}
+\umlinclude{usecase-8}{usecase-9}
+
+\umlVHextend{Membre}{Créateur d'arbre}
 
 \end{tikzpicture}
   \caption{Diagramme de cas d'utilisation}
 \end{figure}
+
 
 \subsubsection{Classification des cas d'utilisation (priorités, risques et itérations)}
 Dans cette section, nous classons les cas d’utilisation identifiés selon leur
@@ -607,24 +603,25 @@ l’exécution du projet en mettant en évidence les fonctionnalités les plus
 importantes, les risques potentiels à surveiller et les étapes itératives du
 développement.
 
+% |m{4cm}|m{11cm}|
 \begin{table}[htbp]
   \centering
-  \begin{tabularx}{\textwidth}{|l|l|l|X|}
+  \begin{tabular}{|l|l|l|c|}
     \hline
     \textbf{Cas d'utilisation} & \textbf{Priorité} & \textbf{Risque} & \textbf{Itération} \\ \hline
+    S'authentifier & Forte & Moyen & 1 \\ \hline
+    Géer un compte & Moyenne & Moyen & 1 \\ \hline
     Gérer un arbre généalogique & Forte & Moyen & 1 \\ \hline
     Gérer des membres & Forte & Moyen & 1 \\ \hline
-    Modifier les informations des membres & Moyenne & Faible & 1 \\ \hline
     Consulter un arbre généalogique & Forte & Faible & 1 \\ \hline
     Rechercher des membres de la famille & Moyenne & Moyen & 2 \\ \hline
-    Accorder des droits d’accès et de confidentialité & Moyenne & Élevé & 2 \\ \hline
+    Accorder des droits d’accès  & Moyenne & Élevé & 2 \\ \hline
     Partager un arbre généalogique & Forte & Élevé & 2 \\ \hline
-    Collaborer à la création d’un arbre généalogique & Forte & Élevé & 3 \\ \hline
-    Gérer un profil & Moyenne & Moyen & 3 \\ \hline
     Administrer le système & Moyenne & Élevé & 3 \\ \hline
-  \end{tabularx}
-  \caption{Classification des cas d'utilisation en fonction de la priorité, du risque et de l'itération}
+  \end{tabular}
+  \caption{Classification des cas d'utilisation}
 \end{table}
+
 
 Dans le tableau ci-dessus, chaque cas d’utilisation est évalué selon trois critères principaux :
 
@@ -655,14 +652,14 @@ le système, ainsi que les flux d’événements associés.
 \subsubsection{Description textuelle d'un cas d'utilisation}
 \textbf{Cas d’utilisation :} Gérer un arbre généalogique
 
-\textbf{Acteur :} Utilisateur enregistré
+\textbf{Acteur :} Membre
 
 \textbf{Autres acteurs :} Système
 
-\textbf{Description :} Ce cas d’utilisation permet à l’utilisateur de créer,
+\textbf{Description :} Ce cas d’utilisation permet à le membre de créer,
 de modifier, de visualiser et de supprimer des arbres généalogiques.
 
-\textbf{Préconditions :} L’utilisateur est authentifié et peut accéder à la
+\textbf{Préconditions :} Le membre est authentifié et peut accéder à la
 fonctionnalité de gestion des arbres généalogiques.
 
 \textbf{Postconditions :} Les modifications apportées à l'arbre généalogique
@@ -670,20 +667,20 @@ sont enregistrées dans le système.
 
 \textbf{Séquencement des événements}
 
-Le cas d’utilisation commence lorsque l’utilisateur se connecte à la plateforme
+Le cas d’utilisation commence lorsque le membre se connecte à la plateforme
 et desire gérer un arbre généalogique.
 
 \textbf{Scénario nominal :}
 
 \begin{enumerate}
 
-  \item  L’utilisateur se connecte à l’application.
+  \item  Le membre se connecte à l’application.
 
   \item Le système affiche alors une barre de navigation latérale comportant un
     bouton \say{Créer un arbre} ainsi qu’une liste d’arbres généalogiques déjà
-    existants chez cet utilisateur.
+    existants chez cet membre.
 
-  \item L’utilisateur peut ensuite sélectionner parmi les options suivantes :
+  \item Le membre peut ensuite sélectionner parmi les options suivantes :
     \begin{itemize}
       \item Créer un nouvel arbre généalogique;
       \item Modifier un arbre généalogique existant;
@@ -692,60 +689,60 @@ et desire gérer un arbre généalogique.
       \item Visualiser un arbre généalogique existant.
     \end{itemize}
 
-  \item Si l’utilisateur décide de créer un nouvel arbre généalogique :
+  \item Si le membre décide de créer un nouvel arbre généalogique :
     \begin{enumerate}
       \item il doit cliquer sur le bouton \say{Créer un nouvel arbre};
       \item le système affiche une fenêtre où il devra entrer un nom et un type(publique, privé)
         pour son nouvel arbre généalogique;
-      \item l’utilisateur valide ses informations;
+      \item le membre valide ses informations;
       \item le système crée alors un nouvel arbre généalogique et l’affiche dans la liste des arbres
-        généalogiques de l’utilisateur.
+        généalogiques du membre.
     \end{enumerate}
 
-  \item  Si l’utilisateur décide de modifier un arbre généalogique existant :
+  \item  Si le membre décide de modifier un arbre généalogique existant :
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale.;
       \item le système affiche alors les détails de l’arbre généalogique sélectionné;
-      \item utilisateur effectue les modifications nécessaires (ajouts,
+      \item le membre effectue les modifications nécessaires (ajouts,
         suppressions, modifications de membres ou de relations) ou les
         informations de l’arbre généalogique;
 
         \subitem Pour ajouter un membre :
 
           \begin{itemize}
-            \item l’utilisateur clique sur l’option \say{Ajouter un membre};
+            \item le membre clique sur l’option \say{Ajouter un membre};
             \item le e système présente un formulaire qui demande des
               renseignements au sujet du nouveau membre (son nom, sa date de
               naissance, ses relations, etc.);
-            \item l’utilisateur remplit les champs requis et valide son entrée;
+            \item le membre remplit les champs requis et valide son entrée;
             \item le système ajoute le nouveau membre à l’arbre généalogique;
           \end{itemize}
 
         \subitem Pour modifier les informations de l’arbre généalogique :
 
           \begin{itemize}
-            \item l’utilisateur clique sur l’option \say{Modifier les informations};
+            \item le membre clique sur l’option \say{Modifier les informations};
             \item le système affiche un formulaire de modification des informations de l’arbre généalogique;
-            \item l’utilisateur effectue les modifications nécessaires et valide ses changements;
+            \item le membre effectue les modifications nécessaires et valide ses changements;
             \item le système enregistre les modifications apportées à l’arbre généalogique.
           \end{itemize}
 
       \item le système sauvegarde toutes les modifications apportées à l’arbre généalogique.
     \end{enumerate}
 
-  \item Si l’utilisateur souhaite consulter, un arbre généalogique existant :
+  \item Si le membre souhaite consulter, un arbre généalogique existant :
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale;
       \item le système affiche alors l’arbre généalogique sélectionné avec les
         informations sur ses membres et leurs liens.
     \end{enumerate}
 
-  \item Si l’utilisateur souhaite supprimer un arbre généalogique existant :
+  \item Si le membre souhaite supprimer un arbre généalogique existant :
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale;
       \item le système demande une confirmation avant de procéder à la
         suppression définitive de l’arbre généalogique;
-      \item si l’utilisateur accepte, le système efface l’arbre généalogique
+      \item si le membre accepte, le système efface l’arbre généalogique
         ainsi que toutes les données connexes de la liste dans la barre de
         navigation latérale.
     \end{enumerate}
@@ -759,30 +756,30 @@ et desire gérer un arbre généalogique.
 \begin{enumerate}
     \item \textbf{Scénario alternatif pour la création d'un arbre généalogique :}
     \begin{itemize}
-        \item \textbf{Étape 4a :} L'utilisateur tente de créer un arbre
+        \item \textbf{Étape 4a :} Le membre tente de créer un arbre
           généalogique mais ne saisit pas un nom valide ou ne choisit pas un type.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de saisir
               un nom valide ou de choisir un type;
-            \item l'utilisateur saisit un nom valide ou choisit un type et confirme;
+            \item le membre saisit un nom valide ou choisit un type et confirme;
             \item Le système crée le nouvel arbre généalogique et l'ajoute à la liste.
         \end{itemize}
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la modification d'un arbre généalogique :}
     \begin{itemize}
-        \item \textbf{Étape 5a :} L'utilisateur tente d'ajouter un membre mais
+        \item \textbf{Étape 5a :} Le membre tente d'ajouter un membre mais
           laisse des champs obligatoires vides.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de compléter les champs obligatoires;
-            \item l'utilisateur complète les informations manquantes et confirme;
+            \item le membre complète les informations manquantes et confirme;
             \item le système ajoute le nouveau membre à l'arbre généalogique.
         \end{itemize}
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la suppression d'un arbre généalogique :}
     \begin{itemize}
-        \item \textbf{Étape 7a :} L'utilisateur sélectionne un arbre généalogique à supprimer mais change d'avis et annule l'opération.
+        \item \textbf{Étape 7a :} Le membre sélectionne un arbre généalogique à supprimer mais change d'avis et annule l'opération.
         \begin{itemize}
             \item Le système annule l'opération de suppression et revient à la liste des arbres généalogiques.
         \end{itemize}
@@ -790,11 +787,11 @@ et desire gérer un arbre généalogique.
 
     \item \textbf{Scénario alternatif pour la visualisation d'un arbre généalogique :}
     \begin{itemize}
-        \item \textbf{Étape 6a :} L'utilisateur tente de visualiser un arbre
+        \item \textbf{Étape 6a :} Le membre tente de visualiser un arbre
           généalogique mais celui-ci contient des erreurs de données (ex. : relations incorrectes).
         \begin{itemize}
             \item le système affiche un message d'erreur et propose des options de correction.
-            \item l'utilisateur corrige les erreurs et le système affiche l'arbre généalogique mis à jour.
+            \item le membre corrige les erreurs et le système affiche l'arbre généalogique mis à jour.
         \end{itemize}
     \end{itemize}
 
@@ -802,10 +799,10 @@ et desire gérer un arbre généalogique.
 
 \textbf{Scénario d'exception :}
 \begin{enumerate}
-  \item Si, à l’étape 3, l’utilisateur ferme la barre de navigation latérale
+  \item Si, à l’étape 3, le membre ferme la barre de navigation latérale
     ,le scénario principal est interrompu.
 
-  \item Si l’utilisateur essaie de supprimer un arbre généalogique sans avoir
+  \item Si le membre essaie de supprimer un arbre généalogique sans avoir
     obtenu de confirmation, le système annule
 \end{enumerate}
 
@@ -813,6 +810,132 @@ Cette description textuelle fournit une vue détaillée des étapes et des
 interactions impliquées dans le cas d’utilisation \say{Gérer un arbre généalogique}.
 Cela permet une compréhension claire des fonctionnalités offertes par ce cas
 d’utilisation.
+\\
+
+\textbf{Cas d’utilisation :} Accorder des droits d’accès
+
+\textbf{Acteur :} Créateur d'arbre
+
+\textbf{Autres acteurs :} Système
+
+\textbf{Description :} Ce cas d’utilisation permet au créateur d'arbre d'accorder,
+de modifier, et de révoquer des droits d'accès aux  membres pour
+les arbres généalogiques.
+
+\textbf{Préconditions :} Le créateur d'arbre est authentifié et possède les droits
+nécessaires pour gérer les accès aux arbres généalogiques.
+
+\textbf{Postconditions :} Les modifications des droits d'accès sont enregistrées
+et mises en vigueur dans le système.
+
+\textbf{Séquencement des événements}
+
+Le cas d’utilisation commence lorsque le créateur d'arbre se connecte à la
+plateforme et désire gérer les droits d'accès à un arbre généalogique.
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+
+  \item  Le créateur d'arbre se connecte à l’application.
+
+  \item Le système affiche une barre de navigation latérale comportant un
+    bouton \say{Gérer les droits d’accès} ainsi qu’une liste d’arbres
+    généalogiques pour lesquels il a des droits de gestion.
+
+  \item Le créateur d'arbre sélectionne l'arbre généalogique pour lequel il souhaite
+    gérer les droits d'accès.
+
+  \item Le système affiche une interface permettant de voir les membres
+    actuels et leurs niveaux d'accès.
+
+  \item Le créateur d'arbre peut ensuite sélectionner parmi les options suivantes :
+    \begin{itemize}
+      \item Ajouter des droits d'accès pour un nouveau membre;
+      \item Modifier les droits d'accès pour un membre existant;
+      \item Révoquer les droits d'accès pour un membre existant.
+    \end{itemize}
+
+  \item Si le créateur d'arbre décide d'ajouter des droits d'accès pour un nouveau membre :
+    \begin{enumerate}
+      \item il doit cliquer sur le bouton \say{Ajouter un membre};
+      \item le système affiche une fenêtre où il devra entrer l'identifiant du
+        membre et choisir le niveau d'accès (lecture seule,
+        modification, gestion complète);
+      \item le créateur d'arbre valide ses informations;
+      \item le système ajoute le membre avec les droits spécifiés et met à
+        jour la liste des membres ayant accès à l'arbre généalogique.
+    \end{enumerate}
+
+  \item Si le créateur d'arbre décide de modifier les droits d'accès d'un membre existant :
+    \begin{enumerate}
+      \item il sélectionne le membre dans la liste;
+      \item le système affiche alors les droits actuels du membre sélectionné;
+      \item membre modifie les droits d'accès nécessaires;
+      \item le système enregistre les modifications apportées aux droits d'accès.
+    \end{enumerate}
+
+  \item Si le créateur d'arbre souhaite révoquer les droits d'accès d'un membre existant :
+    \begin{enumerate}
+      \item il sélectionne le membre dans la liste;
+      \item le système demande une confirmation avant de procéder à la révocation des droits d'accès;
+      \item si le créateur d'arbre confirme, le système révoque les droits d'accès du membre sélectionné.
+    \end{enumerate}
+
+\end{enumerate}
+
+\textbf{Scénario alternatif :}
+
+\subsubsection*{Scénarios alternatifs}
+
+\begin{enumerate}
+    \item \textbf{Scénario alternatif pour l'ajout des droits d'accès :}
+    \begin{itemize}
+        \item \textbf{Étape 5a :} Le créateur d'arbre tente d'ajouter un membre
+          mais ne saisit pas un identifiant valide ou ne choisit pas un niveau d'accès.
+        \begin{itemize}
+            \item le système affiche un message d'erreur demandant de saisir un
+              identifiant valide ou de choisir un niveau d'accès;
+            \item le créateur d'arbre saisit un identifiant valide ou choisit un niveau d'accès et confirme;
+            \item Le système ajoute le membre avec les droits spécifiés et met à jour la liste.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Scénario alternatif pour la modification des droits d'accès :}
+    \begin{itemize}
+        \item \textbf{Étape 6a :} Le créateur d'arbre tente de modifier les droits
+          d'accès mais laisse des champs obligatoires vides.
+        \begin{itemize}
+            \item le système affiche un message d'erreur demandant de compléter les champs obligatoires;
+            \item le créateur d'arbre complète les informations manquantes et confirme;
+            \item le système enregistre les modifications apportées aux droits d'accès.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Scénario alternatif pour la révocation des droits d'accès :}
+    \begin{itemize}
+        \item \textbf{Étape 7a :} Le créateur d'arbre sélectionne un membre à
+          révoquer mais change d'avis et annule l'opération.
+        \begin{itemize}
+            \item Le système annule l'opération de révocation et revient à la
+              liste des membres ayant accès à l'arbre généalogique.
+        \end{itemize}
+    \end{itemize}
+
+\end{enumerate}
+
+\textbf{Scénario d'exception :}
+\begin{enumerate}
+  \item Si, à l’étape 3, le créateur d'arbre ne sélectionne pas un arbre généalogique
+    valide, le système affiche un message d'erreur et ne permet pas de gérer les droits d'accès.
+
+  \item Si le créateur d'arbre essaie de révoquer les droits d'accès d'un membre
+    critique sans confirmation, le système annule l'opération.
+\end{enumerate}
+
+Cette description textuelle fournit une vue détaillée des étapes et des
+interactions impliquées dans le cas d’utilisation \say{Accorder des droits d’accès}.
+Cela permet une compréhension claire des fonctionnalités offertes par ce cas d’utilisation.
 
 
 \subsubsection{Diagramme de séquence}
@@ -821,44 +944,80 @@ Le diagramme de séquence est un outil visuel permettant de représenter les
 interactions entre les acteurs et le système dans un scénario donné. Il montre
 la séquence des messages échangés entre les objets du système au cours d’un
 scénario d’exécution. Dans notre cas, nous allons illustrer le scénario de
-création et de suppression d’un arbre généalogique par un utilisateur.
+création et de suppression d’un arbre généalogique par un membre.
 
 
+\begin{figure}[htbp]
+  \begin{center}
+    \newpage
+    \textbf{Gestion d'un arbre généalogique}
 
-\begin{center}
-  \newpage
-  \textbf{Gestion d'un arbre généalogique}
+    \begin{tikzpicture}
+      \begin{umlseqdiag}
 
-  \begin{figure}[htbp]
-    \centering
-    \begin{sequencediagram}
+        % Definition of the actors with horizontal spacing
+        \umlactor[x=0]{Membre}
+        \umlobject[x=10]{Système}
 
-      \newthread{user}{Utilisateur}
-      \newinst[7]{sys}{Système}  % Adjusting the distance here
+        % Adding vertical spacing by adjusting dt and space between elements
+        \begin{umlcall}[op=Se connecter, type=synchron, return=Page de connexion, dt=5]{Membre}{Système}
+        \end{umlcall}
+        \begin{umlcall}[op=Afficher page de connexion, type=synchron, dt=5]{Système}{Membre}
+        \end{umlcall}
+        \begin{umlcall}[op=Entrer identifiants, type=synchron, return=Authentifier, dt=5]{Membre}{Système}
+        \end{umlcall}
+        \begin{umlcall}[op=Valider identifiants, type=synchron, dt=5]{Système}{Membre}
+        \end{umlcall}
 
-      \begin{sdblock}{Connexion}{}
-        \begin{call}{user}{Se connecter}{sys}{Page de connexion}
-          \mess{sys}{Afficher page de connexion}{user}
-          \begin{call}{user}{Entrer identifiants}{sys}{Authentifier}
-            \mess{sys}{Valider identifiants}{user}
-          \end{call}
-        \end{call}
-      \end{sdblock}
+        \begin{umlfragment}[type=alt, label=Opérations sur Arbre Généalogique, inner xsep=10, inner ysep=6]
+          \begin{umlcall}[op=Sélectionner une action CRUD, type=synchron, return=Afficher page correspondante, dt=8]{Membre}{Système}
+          \end{umlcall}
+          \begin{umlcall}[op=Entrer ou confirmer les détails, type=synchron, return=Valider l'opération, dt=5]{Membre}{Système}
+          \end{umlcall}
+          \begin{umlcall}[op=Mettre à jour la base de données et afficher le résultat, type=synchron, dt=5]{Système}{Membre}
+          \end{umlcall}
+        \end{umlfragment}
 
-      \begin{sdblock}{Opérations sur Arbre Généalogique}{}
-        \begin{call}{user}{Sélectionner une action CRUD}{sys}{Afficher page correspondante}
-          \begin{call}{user}{Entrer ou confirmer les détails}{sys}{Valider l'opération}
-            \mess{sys}{Mettre à jour la base de données et afficher le résultat}{user}
-          \end{call}
-        \end{call}
-      \end{sdblock}
-
-    \end{sequencediagram}
+      \end{umlseqdiag}
+    \end{tikzpicture}
 
     \caption{Diagramme de séquence pour gestion d'un arbre généalogique}
-  \end{figure}
+  \end{center}
+\end{figure}
 
-\end{center}
+\begin{figure}
+  \begin{tikzpicture}
+    \begin{umlseqdiag}
+
+      % Definition of the actors with horizontal spacing
+      \umlactor[x=0]{Créateur d'arbre}
+      \umlobject[x=10]{Système}
+
+      % Adding vertical spacing by adjusting dt and space between elements
+      \begin{umlcall}[op=Se connecter, type=synchron, return=Page de connexion, dt=5]{Créateur d'arbre}{Système}
+      \end{umlcall}
+      \begin{umlcall}[op=Afficher page de connexion, type=synchron, dt=5]{Système}{Créateur d'arbre}
+      \end{umlcall}
+      \begin{umlcall}[op=Entrer identifiants, type=synchron, return=Authentifier, dt=5]{Créateur d'arbre}{Système}
+      \end{umlcall}
+      \begin{umlcall}[op=Valider identifiants, type=synchron, dt=5]{Système}{Créateur d'arbre}
+      \end{umlcall}
+
+      \begin{umlfragment}[type=alt, label=Opérations sur les droits d’accès, inner xsep=10, inner ysep=6]
+        \begin{umlcall}[op=Sélectionner un arbre généalogique, type=synchron, return=Afficher liste des membres, dt=8]{Créateur d'arbre}{Système}
+        \end{umlcall}
+        \begin{umlcall}[op=Sélectionner un membre, type=synchron, return=Afficher droits d'accès, dt=5]{Créateur d'arbre}{Système}
+        \end{umlcall}
+        \begin{umlcall}[op=Modifier les droits d'accès, type=synchron, return=Valider les modifications, dt=5]{Créateur d'arbre}{Système}
+        \end{umlcall}
+      \end{umlfragment}
+
+    \end{umlseqdiag}
+  \end{tikzpicture}
+
+  \caption{Diagramme de séquence pour accorder des droits d’accès}
+
+\end{figure}
 
 \subsubsection{Diagramme d'activité}
 
@@ -878,44 +1037,56 @@ arbre de la famille dans un arbre généalogique.
 % \tikzstyle{arrow} = [thick,->,>=stealth]
 
 
-\begin{figure}[htbp]
+% \begin{figure}[htbp]
+%   \centering
+%   \tikzstyle{startstop} = [draw, circle, fill=black, text=white, minimum width=1cm, minimum height=1cm, text centered, draw=black]
+%   \tikzstyle{stop} = [draw, circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, path picture={
+%     \draw[black, thick] (path picture bounding box.south west) -- (path picture bounding box.north east);
+%     \draw[black, thick] (path picture bounding box.north west) -- (path picture bounding box.south east);
+%   }]
+%   \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+%   \tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black]
+%   \tikzstyle{arrow} = [thick,->,>=stealth]
+%   \begin{tikzpicture}[node distance=2cm]
+%
+%     \node (start) [startstop] {Début};
+%     \node (login) [process, below of=start] {Se connecter};
+%     \node (displayNav) [process, below of=login] {Afficher barre de navigation};
+%     \node (selectTree) [decision, below of=displayNav] {};
+%     \node (firstStop) [startstop, right=3cm of selectTree] {Fin};
+%     \node (fillForm) [process, below of=selectTree, yshift=-1cm] {Entrer ou confirmer les détails};
+%     \node (validate) [decision, below of=fillForm, yshift=-1cm] {};
+%     \node (saveMember) [process, below of=validate, yshift=-1cm] {Sauvegarder le membre};
+%     \node (stop) [startstop, below of=saveMember] {Fin};
+%
+%     \draw [arrow] (start) -- (login);
+%     \draw [arrow] (login) -- (displayNav);
+%     \draw [arrow] (displayNav) -- (selectTree);
+%     \draw [arrow] (selectTree) -- node[anchor=east] {Oui} (fillForm);
+%     \draw [arrow] (selectTree) -- node[anchor=south] {Non} (firstStop);
+%     \draw [arrow] (fillForm) -- (validate);
+%     \draw [arrow] (validate) -- node[anchor=east] {Oui} (saveMember);
+%     \draw [arrow] (saveMember) -- (stop);
+%     \draw [arrow] (validate.east) -- ++(3,0) |- node[anchor=center] {Non} (firstStop);
+%
+%     \node[left=0.3cm of selectTree] {Choix d'une action};
+%     \node[left=0.3cm of selectTree] {Choix d'une action};
+%     \node[left=0.3cm of validate] {Validate ?};
+%
+%   \end{tikzpicture}
+%   \caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
+% \end{figure}
+
+\begin{figure}[H]
   \centering
-  \tikzstyle{startstop} = [draw, circle, fill=black, text=white, minimum width=1cm, minimum height=1cm, text centered, draw=black]
-  \tikzstyle{stop} = [draw, circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, path picture={
-    \draw[black, thick] (path picture bounding box.south west) -- (path picture bounding box.north east);
-    \draw[black, thick] (path picture bounding box.north west) -- (path picture bounding box.south east);
-  }]
-  \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-  \tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black]
-  \tikzstyle{arrow} = [thick,->,>=stealth]
-  \begin{tikzpicture}[node distance=2cm]
-
-    \node (start) [startstop] {Début};
-    \node (login) [process, below of=start] {Se connecter};
-    \node (displayNav) [process, below of=login] {Afficher barre de navigation};
-    \node (selectTree) [decision, below of=displayNav] {};
-    \node (firstStop) [startstop, right=3cm of selectTree] {Fin};
-    \node (fillForm) [process, below of=selectTree, yshift=-1cm] {Entrer ou confirmer les détails};
-    \node (validate) [decision, below of=fillForm, yshift=-1cm] {};
-    \node (saveMember) [process, below of=validate, yshift=-1cm] {Sauvegarder le membre};
-    \node (stop) [startstop, below of=saveMember] {Fin};
-
-    \draw [arrow] (start) -- (login);
-    \draw [arrow] (login) -- (displayNav);
-    \draw [arrow] (displayNav) -- (selectTree);
-    \draw [arrow] (selectTree) -- node[anchor=east] {Oui} (fillForm);
-    \draw [arrow] (selectTree) -- node[anchor=south] {Non} (firstStop);
-    \draw [arrow] (fillForm) -- (validate);
-    \draw [arrow] (validate) -- node[anchor=east] {Oui} (saveMember);
-    \draw [arrow] (saveMember) -- (stop);
-    \draw [arrow] (validate.east) -- ++(3,0) |- node[anchor=center] {Non} (firstStop);
-
-    \node[left=0.3cm of selectTree] {Choix d'une action};
-    \node[left=0.3cm of selectTree] {Choix d'une action};
-    \node[left=0.3cm of validate] {Validate ?};
-
-  \end{tikzpicture}
+  \includegraphics[width=1\textwidth]{figure/activitéUseCase1.png}
   \caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{figure/usecase2.png}
+  \caption{Diagramme d'activité pour accorder des droits d'accès}
 \end{figure}
 
 
@@ -937,12 +1108,11 @@ contraintes et les conditions d’exécution pour garantir la cohérence et la
 fiabilité des opérations réalisées par le système.
 
 \begin{itemize}
-  \item \textbf{Règle de gestion 1 :} Un utilisateur ne peut pas modifier un arbre généalogique qui ne lui appartient pas.
-  \item \textbf{Règle de gestion 2 :} Un arbre généalogique ne peut pas être partagé avec des utilisateurs non enregistrés.
-  \item \textbf{Règle de gestion 3 :} Un arbre généalogique privé ne peut être consulté que par son propriétaire.
-  \item \textbf{Règle de gestion 4 :} Un arbre généalogique publique peut être consulté par tous les utilisateurs enregistrés.
-  \item \textbf{Règle de gestion 5 :} Un arbre généalogique ne peut pas être supprimé s’il contient des membres.
-  \item \textbf{Règle de gestion 6 :} Un arbre généalogique ne peut pas être partagé avec des utilisateurs qui n’ont pas de compte.
+  \item \textbf{Règle de gestion 1 :} Un membre ne peut pas modifier un arbre généalogique qui ne lui appartient pas.
+  \item \textbf{Règle de gestion 2 :} Un arbre généalogique privé ne peut être consulté que par ceux ayant des droits.
+  \item \textbf{Règle de gestion 3 :} Un arbre généalogique publique peut être consulté par tous les utilisateurs.
+  \item \textbf{Règle de gestion 4 :} Un arbre généalogique ne peut pas être supprimé que par un  membre ayant des droits d'adminitrations.
+  \item \textbf{Règle de gestion 5 :} Un membre ne peut pas être ajouté deux fois à un arbre généalogique.
 \end{itemize}
 
 \subsubsection{Modele du domaine (Diagramme de classe du système)}
@@ -954,112 +1124,118 @@ facilite la compréhension des concepts clés du domaine et guide la conception
 de la solution logicielle.
 
 
-\newpage
-\begin{figure}[htbp]
+% \newpage
+\begin{figure}[H]
   \begin{tikzpicture}
 
-    % User class
+    % Utilisateur class
     \umlclass{Utilisateur}{
       + id : String \\
       + nomUtilisateur : String \\
       + email : String \\
-      + MdpHaché : String \\
-      + DateCreation : DateTime \\
-      + DateModifier : DateTime
+      + mdpHache : String \\
+      + dateCreation : DateTime \\
+      + dateModification : DateTime
     }{
-      + créerArbre() : void \\
-      + modifierArbre() : void \\
-      + supprimerArbre() : void \\
-      + visualiserArbre() : void
+      + creerUtilisateur() : void \\
+      + mettreAJourUtilisateur(id) : void \\
+      + supprimerUtilisateur() : void \\
+      + authentifierUtilisateur(nom, mdp) : bool
     }
 
-    % Profile class
-    \umlclass[x=0, y=-6]{Profil}{
+    % Session class
+    \umlclass[x=0, y=-7]{Session}{
       + id : String \\
-      + prénom : String \\
+      + utilisateurId : String \\
+      + dateExpiration : DateTime
+    }{
+      + creerSession(id) : void \\
+      + terminerSession(id) : void
+    }
+
+    % AccesUtilisateur class
+    \umlclass[x=9, y=-7]{AccesUtilisateur}{
+      + id : String \\
+      + niveau : NiveauAcces \\
+      + utilisateurId : String \\
+      + arbreId : String
+    }{
+      + attribuerAcces(id, ni) : void \\
+      + mettreAJourAcces(id) : void \\
+      + supprimerAcces(id) : void
+    }
+
+    % Arbre class
+    \umlclass[x=9, y=-14]{Arbre}{
+      + id : String \\
       + nom : String \\
-      + avatarURL : String
-    }{}
-
-    % UserAccess class
-    \umlclass[x=7, y=-5]{AccèsUtilisateur}{
-      + id : String \\
-      + level : NiveauAccès \\
-      + userExternalId : String \\
-      + treeId : String
-    }{}
-
-    % Tree class
-    \umlclass[x=7, y=-10]{Arbre}{
-      + id : String \\
-      + name : String \\
       + type : TypeArbre
     }{
+      + creerArbre() : void \\
+      + mettreAJourArbre(id: String) : void \\
+      + supprimerArbre(id: String) : void \\
       + ajouterMembre() : void \\
-      + modifierMembre() : void \\
-      + supprimerMembre() : void
+      + supprimerMembre(id: String) : void
     }
 
-    % Member class
-    \umlclass[x=0, y=-10]{Membre}{
+    % Membre class
+    \umlclass[x=0, y=-13]{Membre}{
       + id : String \\
-      + firstname : String \\
+      + prenom : String \\
       + nom : String \\
       + dateNaissance : DateTime \\
       + lieuNaissance : String \\
-      + sexe : Sexe \\
+      + genre : Genre \\
       + avatarURL : String \\
-      + description : String
-    }{}
-
-    % Relation class
-    \umlclass[x=0, y=-16]{Relation}{
-      + idPapa : String \\
-      + idMaman : String \\
-      + conjoints : String[] \\
-      + enfants : String[] \\
-      + idMembre : String
-    }{}
+      + description : String \\
+      + idPere : String \\
+      + idMere : String
+    }{
+      + creerMembre() : void \\
+      + mettreAJourMembre(id) : void \\
+      + supprimerMembre(id) : void
+    }
 
     % Enums
-    \umlenum[x=14, y=-5]{NiveauAccès}{
-      admin \\
-      editeur \\
-      lecteur
+    \umlenum[x=9,]{NiveauAcces}{
+      ADMIN \\
+      EDITEUR \\
+      LECTEUR
     }
 
-    \umlenum[x=14, y=-10]{TypeArbre}{
-      publique \\
-      privé
+    \umlenum[x=9, y=-19]{TypeArbre}{
+      PUBLIC \\
+      PRIVE
     }
 
-    \umlenum[x=14, y=-15]{Sexe}{
-      masculin \\
-      feminin
+    \umlenum[y=-20]{Genre}{
+      M \\
+      F
     }
 
     % Aggregations and Compositions
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=0..1, pos2=0.3]{Utilisateur}{Profil}
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Utilisateur}{AccèsUtilisateur}
+    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Utilisateur}{Session}
+    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Utilisateur}{AccesUtilisateur}
     \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{Membre}
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{AccèsUtilisateur}
-    \umlunicompo[mult1=1, pos1=0.7, mult2=0..1, pos2=0.3]{Membre}{Relation}
+    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{AccesUtilisateur}
 
     % Relationships
-    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{Profil}{Utilisateur}
-    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{AccèsUtilisateur}{Utilisateur}
-    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{AccèsUtilisateur}{Arbre}
-    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Membre}{Arbre}
-    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{Relation}{Membre}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{Session}{Utilisateur}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{AccesUtilisateur}{Utilisateur}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{AccesUtilisateur}{Arbre}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{Membre}{Arbre}
+    \umluniassoc[mult1=0..1, pos1=0.7, mult2=*, pos2=0.3]{Membre}{Membre}
 
     % Enum Relations
-    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{AccèsUtilisateur}{NiveauAccès}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{AccesUtilisateur}{NiveauAcces}
     \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{TypeArbre}
-    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Membre}{Sexe}
+    \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Membre}{Genre}
 
   \end{tikzpicture}
-  \caption{Diagramme de classe du système}
+  \caption{Diagramme de classe du système mis à jour avec opérations}
 \end{figure}
+
+
 
 
 \subsubsection{Diagramme d'objet}
@@ -1071,16 +1247,17 @@ entre eux dans un contexte particulier. Il est utilisé pour visualiser l’éta
 d’un système à un instant précis, facilitant la compréhension des interactions
 dynamiques et des configurations temporaires des objets.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}[
         object/.style={rectangle, draw, text width=6cm, minimum height=1cm, align=left, font=\ttfamily},
         attribute/.style={text width=7cm, align=left, font=\ttfamily}
     ]
 
-        % Object instances
+        % Object instances with separation bar
         \node[object] (utilisateur1) {
             \textbf{Utilisateur: utilisateur1} \\
+            \rule{\linewidth}{0.4pt} \\  % Horizontal line
             \underline{id} = "u1234" \\
             \underline{nomUtilisateur} = "jdoe" \\
             \underline{email} = "jdoe@example.com" \\
@@ -1089,56 +1266,51 @@ dynamiques et des configurations temporaires des objets.
             \underline{DateModifier} = "2022-02-01"
         };
 
-        \node[object, below=of utilisateur1] (profile1) {
-            \textbf{Profil: profile1} \\
-            \underline{id} = "p1234" \\
-            \underline{prénom} = "John" \\
-            \underline{nom} = "Doe" \\
-            \underline{avatarURL} = "http://example.com/avatar.jpg"
+        \node[object, below=of utilisateur1] (session1) {
+            \textbf{Session: session1} \\
+            \rule{\linewidth}{0.4pt} \\  % Horizontal line
+            \underline{id} = "s1234" \\
+            \underline{userId} = "u1234" \\
+            \underline{expiresAt} = "2022-02-01"
         };
 
         \node[object, right=of utilisateur1] (acces1) {
             \textbf{AccèsUtilisateur: acces1} \\
+            \rule{\linewidth}{0.4pt} \\  % Horizontal line
             \underline{id} = "a1234" \\
-            \underline{level} = "admin" \\
-            \underline{userExternalId} = "u1234" \\
+            \underline{niveau} = "admin" \\
+            \underline{userId} = "u1234" \\
             \underline{treeId} = "t1234"
         };
 
         \node[object, below=of acces1] (arbre1) {
             \textbf{Arbre: arbre1} \\
+            \rule{\linewidth}{0.4pt} \\  % Horizontal line
             \underline{id} = "t1234" \\
             \underline{name} = "Doe Family Tree" \\
             \underline{type} = "privé"
         };
 
-        \node[object, below=of profile1] (member1) {
+        \node[object, below=of session1] (member1) {
             \textbf{Membre: member1} \\
+            \rule{\linewidth}{0.4pt} \\  % Horizontal line
             \underline{id} = "m1234" \\
-            \underline{firstname} = "Jane" \\
+            \underline{prenom} = "Jane" \\
             \underline{nom} = "Doe" \\
             \underline{dateNaissance} = "1990-01-01" \\
             \underline{lieuNaissance} = "Paris" \\
-            \underline{sexe} = "féminin" \\
+            \underline{genre} = "féminin" \\
             \underline{avatarURL} = "http://example.com/jane.jpg" \\
-            \underline{description} = "Daughter of John Doe"
-        };
-
-        \node[object, below=of member1] (relation1) {
-            \textbf{Relation: relation1} \\
-            \underline{idPapa} = "m1234" \\
-            \underline{idMaman} = "m1235" \\
-            \underline{conjoints} = ["m1236"] \\
-            \underline{enfants} = ["m1237"] \\
-            \underline{idMembre} = "m1234"
+            \underline{description} = "Daughter of John Doe" \\
+            \underline{idPere} = "m1235" \\
+            \underline{idMere} = "m1236"
         };
 
         % Relationships
-        \draw[->] (utilisateur1) -- (profile1);
+        \draw[->] (utilisateur1) -- (session1);
         \draw[->] (utilisateur1) -- (acces1);
         \draw[->] (acces1) -- (arbre1);
         \draw[->] (arbre1) -- (member1);
-        \draw[->] (member1) -- (relation1);
 
     \end{tikzpicture}
     \caption{Diagramme d'objet du système}
@@ -1239,7 +1411,7 @@ ou sur la même machine (\textcite{frwiki:212787328}).
 
 Voici un diagramme de déploiement illustrant cette architecture :
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
     \begin{tikzpicture}[
         server/.style={rectangle, draw, fill=blue!20, text centered, minimum height=2em, minimum width=4em},
