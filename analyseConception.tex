@@ -119,9 +119,7 @@ d’information. Parmi celles-ci, on compte :
 
 \end{itemize}
 
-\newpage
-
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \begin{tabular}{|p{4.5cm}|c|c|c|c|c|}
     \hline
@@ -489,7 +487,7 @@ notre écosystème numérique.
 
     \node[below=0.3cm of utilisateurs] {Membre};
     \node[below=0.3cm of owner] {Créateur d'arbre};
-    \node[below=0.3cm of admins] {Administrateurs};
+    \node[below=0.3cm of admins] {Administrateur};
     \node[below=0.3cm of visiteurs] {Visiteurs};
   \end{tikzpicture}
   \caption{Diagramme de contexte statique}
@@ -555,7 +553,7 @@ dans notre contexte :
 \umlactor[x=-3, y=4]{Visiteur}
 \umlactor[x=-3, y=2]{Membre}
 \umlactor[x=-3, y=-1]{Créateur d'arbre}
-\umlactor[x=-3, y=-3]{Admin}
+\umlactor[x=-3, y=-3]{Administrateur}
 
 % Use Cases
 \begin{umlsystem}[x=0, y=0, fill=white]{Système}
@@ -579,7 +577,7 @@ dans notre contexte :
 \umlassoc{Membre}{usecase-5}
 \umlassoc{Créateur d'arbre}{usecase-6}
 \umlassoc{Créateur d'arbre}{usecase-7}
-\umlassoc{Admin}{usecase-8}
+\umlassoc{Administrateur}{usecase-8}
 
 % Relationships
 \umlinclude{usecase-4}{usecase-9}
@@ -662,8 +660,6 @@ de modifier, de visualiser et de supprimer des arbres généalogiques.
 \textbf{Préconditions :} Le membre est authentifié et peut accéder à la
 fonctionnalité de gestion des arbres généalogiques.
 
-\textbf{Postconditions :} Les modifications apportées à l'arbre généalogique
-sont enregistrées dans le système.
 
 \textbf{Séquencement des événements}
 
@@ -806,6 +802,10 @@ et desire gérer un arbre généalogique.
     obtenu de confirmation, le système annule
 \end{enumerate}
 
+\textbf{Postconditions :} Les modifications apportées à l'arbre généalogique
+sont enregistrées dans le système.
+\\
+
 Cette description textuelle fournit une vue détaillée des étapes et des
 interactions impliquées dans le cas d’utilisation \say{Gérer un arbre généalogique}.
 Cela permet une compréhension claire des fonctionnalités offertes par ce cas
@@ -825,8 +825,6 @@ les arbres généalogiques.
 \textbf{Préconditions :} Le créateur d'arbre est authentifié et possède les droits
 nécessaires pour gérer les accès aux arbres généalogiques.
 
-\textbf{Postconditions :} Les modifications des droits d'accès sont enregistrées
-et mises en vigueur dans le système.
 
 \textbf{Séquencement des événements}
 
@@ -932,6 +930,10 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
   \item Si le créateur d'arbre essaie de révoquer les droits d'accès d'un membre
     critique sans confirmation, le système annule l'opération.
 \end{enumerate}
+
+\textbf{Postconditions :} Les modifications des droits d'accès sont enregistrées
+et mises en vigueur dans le système.
+\\
 
 Cette description textuelle fournit une vue détaillée des étapes et des
 interactions impliquées dans le cas d’utilisation \say{Accorder des droits d’accès}.
@@ -1111,7 +1113,7 @@ fiabilité des opérations réalisées par le système.
   \item \textbf{Règle de gestion 1 :} Un membre ne peut pas modifier un arbre généalogique qui ne lui appartient pas.
   \item \textbf{Règle de gestion 2 :} Un arbre généalogique privé ne peut être consulté que par ceux ayant des droits.
   \item \textbf{Règle de gestion 3 :} Un arbre généalogique publique peut être consulté par tous les utilisateurs.
-  \item \textbf{Règle de gestion 4 :} Un arbre généalogique ne peut pas être supprimé que par un  membre ayant des droits d'adminitrations.
+  \item \textbf{Règle de gestion 4 :} Un arbre généalogique ne être supprimé que par un  membre ayant le droit d'adminitration.
   \item \textbf{Règle de gestion 5 :} Un membre ne peut pas être ajouté deux fois à un arbre généalogique.
 \end{itemize}
 
@@ -1382,7 +1384,7 @@ comprend plusieurs composants clés.
 
 Une architecture distribuée  désigne un système d'information ou un réseau pour
 lequel l'ensemble des ressources disponibles ne se trouvent pas au même endroit
-ou sur la même machine (\textcite{frwiki:212787328}).
+ou sur la même machine (Wikipédia).
 
 % \begin{figure}[htbp]
 %   \includegraphics{images/architectureDistribuee.png}
@@ -1399,8 +1401,8 @@ ou sur la même machine (\textcite{frwiki:212787328}).
     généalogiques et aux collaborations.
 
   \item \textbf{ Terminal utilisateur :} comprend les navigateurs Web pour
-    accéder à l’application web Next.js et les applications mobiles Expo/React
-    Native pour l’accès mobile.
+    accéder à l’application web Next.js et les applications mobiles Capacitor
+    pour l’accès mobile.
 
   \item \textbf{Services externes :} intègre éventuellement des services
     externes pour des fonctionnalités supplémentaires, telles que
@@ -1426,7 +1428,7 @@ Voici un diagramme de déploiement illustrant cette architecture :
     \node[database, below=of webserver, yshift=-2cm] (database) {Base de Données(PostgreSQL)};
     \node[user, left=of webserver, xshift=-1cm] (browser) {Navigateur};
     \node[user, right=of webserver, xshift=1cm] (mobileapp) {Application Mobile};
-    \node[external, below=of database, yshift=-1cm] (auth) {Service d'authentification(OAuth)};
+    \node[external, below=of database, yshift=-1cm] (auth) {Service d'authentification};
 
     % Arrows
     \draw[arrow] (browser) -- (webserver);

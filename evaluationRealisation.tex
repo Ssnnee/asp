@@ -270,7 +270,7 @@ la gestion des ressources humaines.
     \LaTeX & 1 & 0 FCFA  \\ \hline
     TypeScript & 1 & 0 FCFA  \\ \hline
     Next.js & 1 & 0 FCFA  \\ \hline
-    Expo & 1 & 0 FCFA  \\ \hline
+    Capacitor & 1 & 0 FCFA  \\ \hline
     PostgreSQL & 1 & 0 FCFA  \\ \hline
     Docker & 1 & 0 FCFA  \\ \hline
     Git & 1 & 0 FCFA  \\ \hline
@@ -305,12 +305,10 @@ Les techniques utilisées dans le cadre de ce projet sont les suivantes :
     gestion automatique des routes, ce qui améliore la performance et le
     SEO des applications web.
 
-  \item \textbf{{Expo}}
-    Expo est une plateforme et un ensemble d'outils pour le développement
-    d'applications mobiles avec React Native. Elle simplifie le processus de
-    développement, de déploiement et de mise à jour des applications mobiles,
-    tout en offrant des fonctionnalités telles que le rechargement en temps réel,
-    l'accès aux API natives et une gestion simplifiée des dépendances.
+  \item \textbf{{Capacitor}}
+    Capacitor crée un environnement de développement pour les applications en
+    transformant les applications web en applications mobiles natives avec
+    JavaScript, HTML et CSS.
 
 \end{itemize}
 
@@ -381,15 +379,17 @@ Les outils utilisés dans le cadre de ce projet sont les suivants :
     React est la bibliothèque JavaScript principale utilisée pour construire
     les interfaces utilisateur de la plateforme web.
 
-  \item \textbf{React Native}
+  \item \textbf{Capacitor}
 
-    React Native est le framework JavaScript utilisé pour développer les
-    applications mobiles de la plateforme.
+    Capacitor est un framework qui permet de créer des applications mobiles
+    multiplateformes avec des technologies web comme React,  Vue et bien d'autre.
+    Il offre des fonctionnalités telles que l'accès aux API natives, la gestion
+    des plugins, et la compatibilité avec les stores d'applications.
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=1.0in, height=1.0in]{images/React_Logo_SVG.svg.png}
-      \caption{Logo React}
+      \includegraphics[width=0.5\textwidth]{images/Capacitor-JS-2375506976.png}
+      \caption{Logo Capacitor}
     \end{figure}
 
   \item \textbf{Next.js}
@@ -403,17 +403,17 @@ Les outils utilisés dans le cadre de ce projet sont les suivants :
       \caption{Logo Next.js}
     \end{figure}
 
-  \item \textbf{Expo}
-
-    Expo est la plateforme utilisée pour le développement et le déploiement
-    des applications mobiles, en fournissant un ensemble d'outils et de
-    services pour React Native.
-
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{images/logo-wordmark.png}
-      \caption{Logo Expo}
-    \end{figure}
+  % \item \textbf{Expo}
+  %
+  %   Expo est la plateforme utilisée pour le développement et le déploiement
+  %   des applications mobiles, en fournissant un ensemble d'outils et de
+  %   services pour React Native.
+  %
+  %   \begin{figure}[H]
+  %     \centering
+  %     \includegraphics[width=0.5\textwidth]{images/logo-wordmark.png}
+  %     \caption{Logo Expo}
+  %   \end{figure}
 
   \item \textbf{shadcn/ui}
 
@@ -516,16 +516,6 @@ Les outils utilisés dans le cadre de ce projet sont les suivants :
 
 \textbf{Outils de Sécurité}
 \begin{itemize}
-  \item \textbf{JWT (JSON Web Tokens)}
-
-    JWT est utilisé pour l'authentification et l'autorisation sécurisées des
-    utilisateurs, en générant des jetons d'accès et de rafraîchissement pour
-    contrôler l'accès aux ressources de l'application.
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{images/jwt-3026972785.png}
-      \caption{Logo tRPC}
-    \end{figure}
 
   \item \textbf{TLS (Transport Layer Security)}
 
@@ -574,10 +564,18 @@ Les outils utilisés dans le cadre de ce projet sont les suivants :
       \caption{Logo Vercel}
     \end{figure}
 
-  \item \textbf{Expo Go}
+  \item \textbf{AppFlow}
 
-    Expo Go est utilisé pour tester et déployer les applications mobiles
-    développées avec Expo et React Native.
+    AppFlow est utilisé pour le déploiement et la gestion des applications
+    mobiles développées avec Capacitor, React Native et bien d'autre, en
+    facilitant le processus de publication
+    sur les stores d'applications.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.3\textwidth]{images/AppFlow.png}
+      \caption{Logo AppFlow}
+    \end{figure}
 \end{itemize}
 
 
@@ -593,29 +591,10 @@ l’application en action.
   \caption{Écran d'accueil sur l'application web}
 \end{figure}
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.5\textwidth]{}
-%   \caption{Écran d'accueil sur l'application mobile}
-% \end{figure}
-%
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.5\textwidth]{}
-%   \caption{Écran de recherche sur l'application web}
-% \end{figure}
-%
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.5\textwidth]{}
-%   \caption{Écran de recherche sur l'application mobile}
-% \end{figure}
-%
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{capture/login.png}
-\caption{Écran de connexion sur l'application web}
+  \caption{Écran de connexion sur l'application web}
 \end{figure}
 
 \begin{figure}[H]
@@ -623,13 +602,6 @@ l’application en action.
   \includegraphics[width=1\textwidth]{capture/signup.png}
   \caption{Écran de création de compte sur l'application web}
 \end{figure}
-
-%
-% \begin{figure}
-%   \centering
-%   \includegraphics[width=0.5\textwidth]{}
-%   \caption{Écran de connexion sur l'application mobile}
-% \end{figure}
 
 \begin{figure}[H]
   \centering
@@ -640,7 +612,7 @@ l’application en action.
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{capture/member.png}
-  \caption{Écran d'ajout d'un membre à un généalogique sur l'application mobile}
+  \caption{Écran d'ajout d'un membre à un généalogique sur l'application web}
 \end{figure}
 
 \begin{figure}[H]
@@ -649,8 +621,37 @@ l’application en action.
   \caption{Écran de visualisation d'un arbre généalogique}
 \end{figure}
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.5\textwidth]{}
-%   \caption{Écran de visualisation d'un arbre généalogique sur l'application mobile}
-% \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{./capture/homem.png}
+  \caption{Écran d'accueil sur l'application mobile}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{capture/loginw.png}
+\caption{Écran de connexion sur l'application mobile}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{capture/signupw.png}
+  \caption{Écran de création de compte sur l'application mobile}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{capture/treem.png}
+  \caption{Écran de création d'un arbre généalogique sur l'application mobile}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{capture/memberm.png}
+  \caption{Écran d'ajout d'un membre à un généalogique sur l'application mobile}
+\end{figure}
