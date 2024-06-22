@@ -1,6 +1,6 @@
 \part{Analyse et Conception }
 \label{part:analyse-et-conception}
-\chapter{Etude préliminaire et Méthode}
+\chapter{Étude préliminaire et Méthode}
 
 Dans ce chapitre, nous allons présenter l’étude préliminaire de notre projet de
 création collaborative et de partage d’arbres généalogiques, ainsi que la
@@ -25,7 +25,7 @@ rigoureuse, nous sommes bien placés pour créer une plateforme généalogique
 collaborative et innovante qui répondra aux besoins de nos utilisateurs tout
 en garantissant sa robustesse et sa pérennité.
 
-\section{Etude de l'existant}
+\section{Étude de l'existant}
 \subsection{Description des activités (la situation actuelle)}
 Actuellement, \firm ne dispose pas d’une plateforme dédiée à la création
 collaborative et au partage d’arbres généalogiques. Les activités liées à la
@@ -128,12 +128,12 @@ d’information. Parmi celles-ci, on compte :
     Prise en charge de projets d’envergure   & \cmark  & \cmark    & \xmark  & \cmark   & \xmark  \\ \hline
     Incrémental                               & \xmark  & \xmark    & \cmark  & \cmark   & \xmark  \\ \hline
     Axé sur la documentation                  & \xmark  & \cmark    & \xmark  & \cmark   & \xmark  \\ \hline
-    Gestion des risques                       & \xmark  & \xmark    & \cmark  & \cmark   & \xmark  \\ \hline
+    Gestion des risques                       & \xmark  & \cmark    & \cmark  & \cmark   & \xmark  \\ \hline
     Simplicité de mise en œuvre               & \xmark  & \cmark    & \cmark  & \xmark   & \xmark  \\ \hline
     Langage de modélisation                   & \xmark  & \cmark    & \xmark  & \cmark   & \cmark  \\ \hline
     Dialogue entre les intervenants du projet & \cmark  & \cmark    & \cmark  & \cmark   & \xmark  \\ \hline
     Pilotage par les cas d’utilisation        & \xmark  & \xmark    & \cmark  & \cmark   & \xmark  \\ \hline
-    Axé sur le développement                  & \xmark  & \xmark    & \cmark  & \xmark   & \xmark  \\ \hline
+    Axé sur le développement                  & \xmark  & \cmark    & \cmark  & \cmark   & \xmark  \\ \hline
   \end{tabular}
   \caption{Récapitulatif des méthodes }
 \end{table}
@@ -164,16 +164,6 @@ annotations graphiques pour représenter les contraintes.
 Les langages de modélisation textuelle utilisent typiquement des mots-clés
 standardisés accompagnés de paramètres pour rendre les expressions interprétables
 par les ordinateurs.
-
-% Dans cette section, nous nous concentrerons sur l’Unified Modeling Language (UML), un langage de
-% modélisation largement utilisé dans l’industrie du logiciel pour concevoir et documenter les systèmes
-% logiciels.
-
-% Nous commencerons par une présentation d’UML, mettant en évidence ses origines, ses
-% concepts clés et son utilisation dans le développement logiciel. Ensuite, nous explorerons les différents
-% types de diagrammes UML, qui fournissent des perspectives uniques sur les aspects structurels et
-% comportementaux d’un système logiciel. Nous discuterons également de leur utilisation appropriée
-% dans le cadre de notre projet de création de la plateforme généalogique pour \firm.
 
 \subsubsection{Présentation d'UML}
 \ac{UML} est un langage de modélisation largement utilisé dans l’industrie
@@ -277,61 +267,19 @@ Cette approche permet une personnalisation accrue du processus de développement
 fonction des particularités et des contraintes du projet.
 
 \newpage
-\begin{figure}[htbp]
+\begin{figure}[H]
   \includegraphics{./figure/illustrationDeveloppementEnY.png}
   \caption{Illustration du processus de développement en Y}
 \end{figure}
 
 
-% \begin{figure}[htbp]
-%   \begin{tikzpicture}[node distance=2cm]
-%     \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=gray!30]
-%     \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=gray!10]
-%     \tikzstyle{arrow} = [thick,->,>=stealth]
-%     \tikzstyle{textblock} = [rectangle, text width=3cm, text centered]
-%
-%     % Nodes
-%     \node (prelim) [startstop] {Étude préliminaire};
-%     \node (functional) [textblock, left=2cm of prelim] {Contraintes fonctionnelles};
-%     \node (technical) [textblock, right=2cm of prelim] {Contraintes techniques};
-%     \node (funcReq) [process, below left=of prelim] {Capture des besoins fonctionnels};
-%     \node (techReq) [process, below right=of prelim] {Capture des besoins techniques};
-%     \node (analysis) [process, below=of funcReq] {Analyse};
-%     \node (genericDesign) [process, below=of techReq] {Conception générique};
-%     \node (prelimDesign) [process, below=of analysis, xshift=2cm] {Conception préliminaire};
-%     \node (detailedDesign) [process, below=of prelimDesign] {Conception détaillée};
-%     \node (coding) [process, below=of detailedDesign] {Codage et tests};
-%     \node (testing) [process, below=of coding] {Recette};
-%     \node (prototype) [process, right=of genericDesign, xshift=1cm] {Prototype};
-%
-%     % Arrows
-%     \draw [arrow] (prelim) -- (funcReq);
-%     \draw [arrow] (prelim) -- (techReq);
-%     \draw [arrow] (funcReq) -- (analysis);
-%     \draw [arrow] (techReq) -- (genericDesign);
-%     \draw [arrow] (analysis) -- (prelimDesign);
-%     \draw [arrow] (genericDesign) -- (prelimDesign);
-%     \draw [arrow] (prelimDesign) -- (detailedDesign);
-%     \draw [arrow] (detailedDesign) -- (coding);
-%     \draw [arrow] (coding) -- (testing);
-%     \draw [arrow] (genericDesign) -- (prototype);
-%
-%     % Text blocks
-%     \node at (-3.5, -1) [textblock] {Branche fonctionnelle};
-%     \node at ( 4.5, -1) [textblock] {Branche technique};
-%
-%   \end{tikzpicture}
-%
-% \end{figure}
-
-
 
 \subsubsection{2TUP et UML}
-L’utilisation de l’UML est étroitement liée au 2TUP. Les différents types de
+L’utilisation de UML est étroitement liée au 2TUP. Les différents types de
 diagrammes UML (diagramme de cas d’utilisation, de classes, de séquence et d’état)
 sont largement utilisés tout au long du processus de développement pour modéliser
 et documenter les besoins, les architectures, les interactions et les comportements
-du système logiciel en cours de développement. L’UML fournit un langage visuel
+du système logiciel en cours de développement. UML fournit un langage visuel
 standard et universellement accepté pour la représentation des systèmes logiciels.
 Cela facilite la communication et la collaboration entre les membres de l’équipe
 de développement et les
@@ -471,7 +419,7 @@ les liens essentiels entre les utilisateurs inscrits, les administrateurs du
 système et les visiteurs non enregistrés, ce qui illustre la dynamique de
 notre écosystème numérique.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}[node distance=2cm, every node/.style={inner sep=3pt}]
     \node (system) [draw, rectangle, minimum width=2.5cm, text width=2cm, align=center] {: Système};
@@ -550,7 +498,7 @@ dans notre contexte :
   \begin{tikzpicture}
 
 % Actors
-\umlactor[x=-3, y=4]{Visiteur}
+\umlactor[x=-3, y=5]{Visiteur}
 \umlactor[x=-3, y=2]{Membre}
 \umlactor[x=-3, y=-1]{Créateur d'arbre}
 \umlactor[x=-3, y=-3]{Administrateur}
@@ -572,7 +520,6 @@ dans notre contexte :
 \umlassoc{Visiteur}{usecase-1}
 \umlassoc{Visiteur}{usecase-2}
 \umlassoc{Visiteur}{usecase-3}
-\umlassoc{Membre}{usecase-3}
 \umlassoc{Membre}{usecase-4}
 \umlassoc{Membre}{usecase-5}
 \umlassoc{Créateur d'arbre}{usecase-6}
@@ -586,12 +533,12 @@ dans notre contexte :
 \umlinclude{usecase-7}{usecase-9}
 \umlinclude{usecase-8}{usecase-9}
 
-\umlVHextend{Membre}{Créateur d'arbre}
+\umlaggreg{Visiteur}{Membre}
+\umlaggreg{Membre}{Créateur d'arbre}
 
 \end{tikzpicture}
   \caption{Diagramme de cas d'utilisation}
 \end{figure}
-
 
 \subsubsection{Classification des cas d'utilisation (priorités, risques et itérations)}
 Dans cette section, nous classons les cas d’utilisation identifiés selon leur
@@ -602,7 +549,7 @@ importantes, les risques potentiels à surveiller et les étapes itératives du
 développement.
 
 % |m{4cm}|m{11cm}|
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|l|c|}
     \hline
@@ -613,8 +560,8 @@ développement.
     Gérer des membres & Forte & Moyen & 1 \\ \hline
     Consulter un arbre généalogique & Forte & Faible & 1 \\ \hline
     Rechercher des membres de la famille & Moyenne & Moyen & 2 \\ \hline
-    Accorder des droits d’accès  & Moyenne & Élevé & 2 \\ \hline
     Partager un arbre généalogique & Forte & Élevé & 2 \\ \hline
+    Accorder des droits d’accès  & Moyenne & Élevé & 3 \\ \hline
     Administrer le système & Moyenne & Élevé & 3 \\ \hline
   \end{tabular}
   \caption{Classification des cas d'utilisation}
@@ -640,8 +587,6 @@ Cette classification constituera un outil précieux pour la planification et la
 gestion du projet. Elle permettra une allocation efficace des ressources et
 une identification proactive des risques potentiels.
 
-\newpage
-
 \subsection{Spécification détaillée }
 Dans cette section, nous fournissons une spécification détaillée des cas
 d’utilisation identifiés. Nous décrivons les interactions entre les acteurs et
@@ -654,12 +599,15 @@ le système, ainsi que les flux d’événements associés.
 
 \textbf{Autres acteurs :} Système
 
+\textbf{Date :} 15/04/2024
+
+\textbf{Version :} 1.3
+
 \textbf{Description :} Ce cas d’utilisation permet à le membre de créer,
 de modifier, de visualiser et de supprimer des arbres généalogiques.
 
 \textbf{Préconditions :} Le membre est authentifié et peut accéder à la
 fonctionnalité de gestion des arbres généalogiques.
-
 
 \textbf{Séquencement des événements}
 
@@ -674,7 +622,7 @@ et desire gérer un arbre généalogique.
 
   \item Le système affiche alors une barre de navigation latérale comportant un
     bouton \say{Créer un arbre} ainsi qu’une liste d’arbres généalogiques déjà
-    existants chez cet membre.
+    existants chez ce membre.
 
   \item Le membre peut ensuite sélectionner parmi les options suivantes :
     \begin{itemize}
@@ -745,9 +693,8 @@ et desire gérer un arbre généalogique.
 
 \end{enumerate}
 
-\textbf{Scénario alternatif :}
-
-\subsubsection*{Scénarios alternatifs}
+\textbf{Scénarios alternatifs :}
+% \subsubsection*{Scénarios alternatifs}
 
 \begin{enumerate}
     \item \textbf{Scénario alternatif pour la création d'un arbre généalogique :}
@@ -757,20 +704,28 @@ et desire gérer un arbre généalogique.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de saisir
               un nom valide ou de choisir un type;
-            \item le membre saisit un nom valide ou choisit un type et confirme;
-            \item Le système crée le nouvel arbre généalogique et l'ajoute à la liste.
         \end{itemize}
+        Le scénario reprend à l'étape 4c.
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la modification d'un arbre généalogique :}
     \begin{itemize}
-        \item \textbf{Étape 5a :} Le membre tente d'ajouter un membre mais
-          laisse des champs obligatoires vides.
+        \item \textbf{Étape 5a :} Le membre laisse des champs obligatoires vides.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de compléter les champs obligatoires;
-            \item le membre complète les informations manquantes et confirme;
-            \item le système ajoute le nouveau membre à l'arbre généalogique.
         \end{itemize}
+        Le scénario reprend à l'étape 5c.
+    \end{itemize}
+
+  \item \textbf{Scénario alternatif pour la visualisation d'un arbre généalogique :}
+    \begin{itemize}
+      \item \textbf{Étape 6a :} Le membre tente de visualiser un arbre
+        généalogique mais celui-ci contient des erreurs de données (ex. : relations incorrectes).
+        \begin{itemize}
+          \item le système affiche un message d'erreur et propose des options de correction.
+          \item le membre corrige les erreurs.
+        \end{itemize}
+        Le scénario reprend à l'étape 6a.
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la suppression d'un arbre généalogique :}
@@ -781,15 +736,6 @@ et desire gérer un arbre généalogique.
         \end{itemize}
     \end{itemize}
 
-    \item \textbf{Scénario alternatif pour la visualisation d'un arbre généalogique :}
-    \begin{itemize}
-        \item \textbf{Étape 6a :} Le membre tente de visualiser un arbre
-          généalogique mais celui-ci contient des erreurs de données (ex. : relations incorrectes).
-        \begin{itemize}
-            \item le système affiche un message d'erreur et propose des options de correction.
-            \item le membre corrige les erreurs et le système affiche l'arbre généalogique mis à jour.
-        \end{itemize}
-    \end{itemize}
 
 \end{enumerate}
 
@@ -804,12 +750,9 @@ et desire gérer un arbre généalogique.
 
 \textbf{Postconditions :} Les modifications apportées à l'arbre généalogique
 sont enregistrées dans le système.
-\\
 
 Cette description textuelle fournit une vue détaillée des étapes et des
 interactions impliquées dans le cas d’utilisation \say{Gérer un arbre généalogique}.
-Cela permet une compréhension claire des fonctionnalités offertes par ce cas
-d’utilisation.
 \\
 
 \textbf{Cas d’utilisation :} Accorder des droits d’accès
@@ -817,6 +760,11 @@ d’utilisation.
 \textbf{Acteur :} Créateur d'arbre
 
 \textbf{Autres acteurs :} Système
+
+\textbf{Date :} 15/04/2024
+
+\textbf{Version :} 1.0
+
 
 \textbf{Description :} Ce cas d’utilisation permet au créateur d'arbre d'accorder,
 de modifier, et de révoquer des droits d'accès aux  membres pour
@@ -884,35 +832,31 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
 
 \textbf{Scénario alternatif :}
 
-\subsubsection*{Scénarios alternatifs}
-
 \begin{enumerate}
     \item \textbf{Scénario alternatif pour l'ajout des droits d'accès :}
     \begin{itemize}
-        \item \textbf{Étape 5a :} Le créateur d'arbre tente d'ajouter un membre
+        \item \textbf{Étape 6a :} Le créateur d'arbre tente d'ajouter un membre
           mais ne saisit pas un identifiant valide ou ne choisit pas un niveau d'accès.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de saisir un
               identifiant valide ou de choisir un niveau d'accès;
-            \item le créateur d'arbre saisit un identifiant valide ou choisit un niveau d'accès et confirme;
-            \item Le système ajoute le membre avec les droits spécifiés et met à jour la liste.
         \end{itemize}
+        Le scénario reprend à l'étape 6c.
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la modification des droits d'accès :}
     \begin{itemize}
-        \item \textbf{Étape 6a :} Le créateur d'arbre tente de modifier les droits
+        \item \textbf{Étape 7a :} Le créateur d'arbre tente de modifier les droits
           d'accès mais laisse des champs obligatoires vides.
         \begin{itemize}
             \item le système affiche un message d'erreur demandant de compléter les champs obligatoires;
-            \item le créateur d'arbre complète les informations manquantes et confirme;
-            \item le système enregistre les modifications apportées aux droits d'accès.
         \end{itemize}
+        Le scénario reprend à l'étape 7c.
     \end{itemize}
 
     \item \textbf{Scénario alternatif pour la révocation des droits d'accès :}
     \begin{itemize}
-        \item \textbf{Étape 7a :} Le créateur d'arbre sélectionne un membre à
+        \item \textbf{Étape 8a :} Le créateur d'arbre sélectionne un membre à
           révoquer mais change d'avis et annule l'opération.
         \begin{itemize}
             \item Le système annule l'opération de révocation et revient à la
@@ -937,7 +881,7 @@ et mises en vigueur dans le système.
 
 Cette description textuelle fournit une vue détaillée des étapes et des
 interactions impliquées dans le cas d’utilisation \say{Accorder des droits d’accès}.
-Cela permet une compréhension claire des fonctionnalités offertes par ce cas d’utilisation.
+% Cela permet une compréhension claire des fonctionnalités offertes par ce cas d’utilisation.
 
 
 \subsubsection{Diagramme de séquence}
@@ -949,10 +893,8 @@ scénario d’exécution. Dans notre cas, nous allons illustrer le scénario de
 création et de suppression d’un arbre généalogique par un membre.
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \begin{center}
-    \newpage
-    \textbf{Gestion d'un arbre généalogique}
 
     \begin{tikzpicture}
       \begin{umlseqdiag}
@@ -983,11 +925,12 @@ création et de suppression d’un arbre généalogique par un membre.
       \end{umlseqdiag}
     \end{tikzpicture}
 
-    \caption{Diagramme de séquence pour gestion d'un arbre généalogique}
+    \caption{Diagramme de séquence du cas d'utilisation gérer un arbre généalogique}
   \end{center}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
+  \centering
   \begin{tikzpicture}
     \begin{umlseqdiag}
 
@@ -1017,7 +960,7 @@ création et de suppression d’un arbre généalogique par un membre.
     \end{umlseqdiag}
   \end{tikzpicture}
 
-  \caption{Diagramme de séquence pour accorder des droits d’accès}
+  \caption{Diagramme de séquence du cas d'utilisation accoder des droits d'accès}
 
 \end{figure}
 
@@ -1028,71 +971,20 @@ de contrôle entre les différentes activités d’un système. Il montre commen
 activités sont organisées et enchaînées pour atteindre un objectif spécifique.
 Dans notre cas, nous allons illustrer le processus d’ajout d’un membre à un
 arbre de la famille dans un arbre généalogique.
-% \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
-% \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
-% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
-% \tikzstyle{arrow} = [thick,->,>=stealth]
-
-% \tikzstyle{startstop} = [draw, circle, rounded corners, minimum width=1cm, minimum height=1cm, text centered, draw=black]
-% \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-% \tikzstyle{arrow} = [thick,->,>=stealth]
-
-
-% \begin{figure}[htbp]
-%   \centering
-%   \tikzstyle{startstop} = [draw, circle, fill=black, text=white, minimum width=1cm, minimum height=1cm, text centered, draw=black]
-%   \tikzstyle{stop} = [draw, circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, path picture={
-%     \draw[black, thick] (path picture bounding box.south west) -- (path picture bounding box.north east);
-%     \draw[black, thick] (path picture bounding box.north west) -- (path picture bounding box.south east);
-%   }]
-%   \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-%   \tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black]
-%   \tikzstyle{arrow} = [thick,->,>=stealth]
-%   \begin{tikzpicture}[node distance=2cm]
-%
-%     \node (start) [startstop] {Début};
-%     \node (login) [process, below of=start] {Se connecter};
-%     \node (displayNav) [process, below of=login] {Afficher barre de navigation};
-%     \node (selectTree) [decision, below of=displayNav] {};
-%     \node (firstStop) [startstop, right=3cm of selectTree] {Fin};
-%     \node (fillForm) [process, below of=selectTree, yshift=-1cm] {Entrer ou confirmer les détails};
-%     \node (validate) [decision, below of=fillForm, yshift=-1cm] {};
-%     \node (saveMember) [process, below of=validate, yshift=-1cm] {Sauvegarder le membre};
-%     \node (stop) [startstop, below of=saveMember] {Fin};
-%
-%     \draw [arrow] (start) -- (login);
-%     \draw [arrow] (login) -- (displayNav);
-%     \draw [arrow] (displayNav) -- (selectTree);
-%     \draw [arrow] (selectTree) -- node[anchor=east] {Oui} (fillForm);
-%     \draw [arrow] (selectTree) -- node[anchor=south] {Non} (firstStop);
-%     \draw [arrow] (fillForm) -- (validate);
-%     \draw [arrow] (validate) -- node[anchor=east] {Oui} (saveMember);
-%     \draw [arrow] (saveMember) -- (stop);
-%     \draw [arrow] (validate.east) -- ++(3,0) |- node[anchor=center] {Non} (firstStop);
-%
-%     \node[left=0.3cm of selectTree] {Choix d'une action};
-%     \node[left=0.3cm of selectTree] {Choix d'une action};
-%     \node[left=0.3cm of validate] {Validate ?};
-%
-%   \end{tikzpicture}
-%   \caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
-% \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{figure/activitéUseCase1.png}
-  \caption{Diagramme d'activité pour la gestion d'un arbre généalogique}
+  \caption{Diagramme d'activité du cas d'utilisation gérer un arbre généalogique}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{figure/usecase2.png}
-  \caption{Diagramme d'activité pour accorder des droits d'accès}
+  \caption{Diagramme d'activité du cas d'utilisation accorder des droits d'accès}
 \end{figure}
 
 
-\newpage
 \subsection{Réalisations des cas d'utilisation}
 Dans cette section, nous abordons la mise en œuvre concrète des cas
 d’utilisation identifiés précédemment. À ce stade, nous traduisons les
@@ -1110,14 +1002,14 @@ contraintes et les conditions d’exécution pour garantir la cohérence et la
 fiabilité des opérations réalisées par le système.
 
 \begin{itemize}
-  \item \textbf{Règle de gestion 1 :} Un membre ne peut pas modifier un arbre généalogique qui ne lui appartient pas.
-  \item \textbf{Règle de gestion 2 :} Un arbre généalogique privé ne peut être consulté que par ceux ayant des droits.
-  \item \textbf{Règle de gestion 3 :} Un arbre généalogique publique peut être consulté par tous les utilisateurs.
-  \item \textbf{Règle de gestion 4 :} Un arbre généalogique ne être supprimé que par un  membre ayant le droit d'adminitration.
-  \item \textbf{Règle de gestion 5 :} Un membre ne peut pas être ajouté deux fois à un arbre généalogique.
+  \item \textbf{Règle de gestion 1 :} un membre ne peut pas modifier un arbre généalogique qui ne lui appartient pas.
+  \item \textbf{Règle de gestion 2 :} un arbre généalogique privé ne peut être consulté que par ceux ayant des droits.
+  \item \textbf{Règle de gestion 3 :} un arbre généalogique publique peut être consulté par tous les utilisateurs.
+  \item \textbf{Règle de gestion 4 :} un arbre généalogique ne être supprimé que par un  membre ayant le droit d'adminitration.
+  \item \textbf{Règle de gestion 5 :} un membre ne peut pas être ajouté deux fois à un arbre généalogique.
 \end{itemize}
 
-\subsubsection{Modele du domaine (Diagramme de classe du système)}
+\subsubsection{Modèle du domaine (Diagramme de classe du système)}
 Le diagramme de classe du système est une représentation visuelle des
 entités principales du domaine et de leurs relations. Il offre une vue
 d'ensemble de la structure du système, en mettant en évidence les différentes
@@ -1216,10 +1108,10 @@ de la solution logicielle.
     }
 
     % Aggregations and Compositions
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Utilisateur}{Session}
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Utilisateur}{AccesUtilisateur}
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{Membre}
-    \umluniaggreg[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Arbre}{AccesUtilisateur}
+    \umluniaggreg[mult1=*, pos1=0.7, mult2=1, pos2=0.3]{Utilisateur}{Session}
+    \umluniaggreg[mult1=*, pos1=0.7, mult2=1, pos2=0.3]{Utilisateur}{AccesUtilisateur}
+    \umluniaggreg[mult1=*, pos1=0.7, mult2=1, pos2=0.3]{Arbre}{Membre}
+    \umluniaggreg[mult1=*, pos1=0.7, mult2=1, pos2=0.3]{Arbre}{AccesUtilisateur}
 
     % Relationships
     \umluniassoc[mult1=1, pos1=0.7, mult2=1, pos2=0.3]{Session}{Utilisateur}
@@ -1339,35 +1231,71 @@ développeurs qui permet d’aligner les décisions techniques avec les objectif
 métier et les contraintes du projet.
 
 Pour notre projet, nous avons opté pour une architecture basée sur plusieurs
-patterns et concepts pour structurer nos applications.
+projets dans un seul référentiel (Monorepo). Cette architecture permet de centraliser
+le code des applications Android, iOS, et Web, ainsi que les composants partagés et le serveur backend.
 
+\subsection*{Structure du Répertoire}
+
+\paragraph{Racine du Projet}
 \begin{itemize}
-  \item \textbf{Architecture pour l'application web }
-
-    Notre architecture se distingue par sa capacité à offrir un rendu côté
-    serveur (SSR - Server-Side Rendering) ainsi que des pages statiques générées
-    à la compilation (SSG - Static Site Generation). Cela améliore à la fois
-    les performances et l’optimisation pour les moteurs de recherche (SEO).
-
-    En outre, cette architecture permet de séparer les pages, les composants et
-    les API, offrant ainsi une organisation plus claire et modulable.
-
-  \item \textbf{Architecture pour l'application mobile}
-
-    Notre architecture offre une expérience de développement simplifiée. Elle
-    permet de développer des applications mobiles rapidement et efficacement grâce
-    à des outils intégrés pour la gestion de la configuration, l’accès aux API
-    natives, et les mises à jour en direct (OTA — Over-The-Air).
-
-    Enfin, elle permet de séparer les vues, les composants et les services, offrant
-    ainsi une organisation claire et modulaire des éléments de l’application.
-
-    Cette approche optimise le développement cross-plateforme en utilisant une seule
-    base de code pour les applications iOS et Android, tout en garantissant une
-    expérience utilisateur native de haute qualité.
+    \item \texttt{.env} : Fichier de configuration des variables d'environnement.
+    \item \texttt{package.json} : Dépendances et scripts du projet.
+    \item \texttt{tsconfig.json} : Configuration de TypeScript.
+    \item \texttt{next.config.js} : Configuration de Next.js.
+    \item \texttt{capacitor.config.ts} : Configuration de Capacitor.
 \end{itemize}
 
+\paragraph{android}
+\begin{itemize}
+    \item Contient le code et la configuration de l'application Android utilisant Capacitor.
+\end{itemize}
 
+\paragraph{ios}
+\begin{itemize}
+    \item Contient le code et la configuration de l'application iOS utilisant Capacitor.
+\end{itemize}
+
+\paragraph{out}
+\begin{itemize}
+    \item Contient les exportations statiques de l'application Web Next.js.
+\end{itemize}
+
+\paragraph{src}
+\begin{itemize}
+    \item \texttt{actions} : Actions server Next.js.
+    \item \texttt{app} : Code principal de l'application Next.js.
+    \item \texttt{components} : Composants React réutilisables.
+    \item \texttt{lib} : Bibliothèques et fonctions utilitaires.
+    \item \texttt{server} : Code backend, incluant les routes API et la configuration de la base de données.
+    \item \texttt{styles} : Fichiers de styles.
+    \item \texttt{trpc} : Configuration et handlers de tRPC.
+    \item \texttt{types} : Types et interfaces TypeScript.
+\end{itemize}
+
+\subsection*{Interaction entre les Parties}
+
+\begin{itemize}
+    \item \textbf{Android et iOS} : Utilisent Capacitor pour intégrer des
+      fonctionnalités Web dans les applications mobiles. Ils partagent du code
+      et des composants avec l'application Web.
+    \item \textbf{Web (Next.js)} : L'application principale qui utilise React
+      pour le frontend et tRPC pour les appels API.
+    \item \textbf{Server} : Fournit les API et gère les interactions avec la
+      base de données. Partagé entre les applications Web et mobiles pour
+      assurer la cohérence des données.
+    \item \textbf{Components et Lib} : Répertoires partagés contenant les
+      composants réutilisables et les fonctions utilitaires, facilitant la
+      maintenance et la réutilisation du code.
+\end{itemize}
+
+Cette structure Monorepo centralisée permet une gestion cohérente et efficace
+des différents aspects de l'application, en simplifiant le développement et la maintenance.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figure/archi.png}
+  \caption{Architecture du logiciel sous VSCodium}
+\end{figure}
 
 \subsubsection{Architecture globale de la solution (Diagramme de déploiement)}
 L’architecture globale de la solution est souvent illustrée par un diagramme de
@@ -1386,15 +1314,19 @@ Une architecture distribuée  désigne un système d'information ou un réseau p
 lequel l'ensemble des ressources disponibles ne se trouvent pas au même endroit
 ou sur la même machine (Wikipédia).
 
-% \begin{figure}[htbp]
-%   \includegraphics{images/architectureDistribuee.png}
-%   \caption{Illustration de l'architecture distribuée }
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figure/schema.png}
+  \caption{Illustration d'une architecture distribuée}
+\end{figure}
 
 \begin{itemize}
   \item \textbf{ Serveur Web :} Héberge l'application Next.js pour le rendu
     côté serveur (SSR) et le serveur API. Utilise Node.js pour exécuter le
     code JavaScript côté serveur.
+
+  \item \textbf{Serveur d'application :} utilise Node.js et Next.js pour
+    le rendu côté serveur et la génération de pages statiques.
 
   \item \textbf{Serveur de bases de données :} utilise PostgreSQL comme SGBD
     pour stocker les données relatives aux utilisateurs, aux arbres
@@ -1406,7 +1338,7 @@ ou sur la même machine (Wikipédia).
 
   \item \textbf{Services externes :} intègre éventuellement des services
     externes pour des fonctionnalités supplémentaires, telles que
-    l’authentification OAuth, le stockage de fichiers et les
+    le stockage de fichiers et les
     services de messagerie.
 
 \end{itemize}
@@ -1415,35 +1347,10 @@ Voici un diagramme de déploiement illustrant cette architecture :
 
 \begin{figure}[H]
   \centering
-    \begin{tikzpicture}[
-        server/.style={rectangle, draw, fill=blue!20, text centered, minimum height=2em, minimum width=4em},
-        database/.style={cylinder, draw, shape border rotate=90, aspect=0.25, text centered, minimum height=2em, minimum width=4em},
-        user/.style={ellipse, draw, fill=yellow!20, text centered, minimum height=2em, minimum width=4em},
-        external/.style={rectangle, draw, dashed, fill=green!20, text centered, minimum height=2em, minimum width=4em},
-        arrow/.style={->, thick, shorten <=2pt, shorten >=2pt}
-    ]
-
-    % Nodes
-    \node[server] (webserver) {Serveur Web(Next.js/Node.js)};
-    \node[database, below=of webserver, yshift=-2cm] (database) {Base de Données(PostgreSQL)};
-    \node[user, left=of webserver, xshift=-1cm] (browser) {Navigateur};
-    \node[user, right=of webserver, xshift=1cm] (mobileapp) {Application Mobile};
-    \node[external, below=of database, yshift=-1cm] (auth) {Service d'authentification};
-
-    % Arrows
-    \draw[arrow] (browser) -- (webserver);
-    \draw[arrow] (webserver) -- ( browser);
-    \draw[arrow] (mobileapp) -- (webserver);
-    \draw[arrow] (webserver) -- (mobileapp);
-    \draw[arrow] (webserver) -- (database);
-    \draw[arrow] (webserver) -- (auth);
-    \draw[arrow] (auth) -- (webserver);
-
-    \end{tikzpicture}
-    \caption{Diagramme de déploiement}
+  \includegraphics[width=1\textwidth]{figure/deployemnt.drawio(1).png}
+  \caption{Diagramme de déploiement logique}
 \end{figure}
 
-\newpage
 \textbf{Avantages de cette architecture }
 
 \begin{itemize}
