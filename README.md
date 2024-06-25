@@ -5,13 +5,15 @@
 Étude et mise en œuvre d'une plateforme web et mobile pour la création
 collaborative et le partage d'arbres généalogiques à Mazala-Firm
 
-## Auteur
+## Auteurs
 * Samuel Nandi - https://github.com/Ssnnee
+* Frédy ONIANGUE-DESO - https://github.com/cooger17
 
 
 ## Contexte
 Ce mémoire a été écrit en rapport avec le  projet [informatique](https://github.com/Ssnnee/cellotree_web)
-pour l'obtension de la licence professionnelle en génie logiciel.
+pour l'obtension de la licence professionnelle en génie logiciel à l'école
+[ESGAE](https://esgae.org/).
 
 ## Contenu
 Pour en lire le contenu et tout ce qui a rapport avec le mémoire, ouvrez le fichier [main.pdf](main.pdf)
@@ -29,9 +31,3 @@ Pour en lire le contenu et tout ce qui a rapport avec le mémoire, ouvrez le fic
     biber main
     pdflatex main.tex
     ```
-
-## Todos
-    - [ ] Mettre les taches correspondantes au projet donc le diagramme de Gantt
-    - [ ] Ajouter les détails techniques si oublié
-    - [ ] Mettre les abréviations dans un tableau pour une meilleure lisibilité
-    - [ ] Ajouter les captures d'écran de l'application
