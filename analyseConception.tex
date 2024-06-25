@@ -587,6 +587,7 @@ Cette classification constituera un outil précieux pour la planification et la
 gestion du projet. Elle permettra une allocation efficace des ressources et
 une identification proactive des risques potentiels.
 
+\newpage
 \subsection{Spécification détaillée }
 Dans cette section, nous fournissons une spécification détaillée des cas
 d’utilisation identifiés. Nous décrivons les interactions entre les acteurs et
@@ -601,7 +602,7 @@ le système, ainsi que les flux d’événements associés.
 
 \textbf{Date :} 15/04/2024
 
-\textbf{Version :} 1.3
+\textbf{Version :} 2.0
 
 \textbf{Description :} Ce cas d’utilisation permet à le membre de créer,
 de modifier, de visualiser et de supprimer des arbres généalogiques.
@@ -618,7 +619,7 @@ et desire gérer un arbre généalogique.
 
 \begin{enumerate}
 
-  \item  Le membre se connecte à l’application.
+  \item Le membre se connecte à l’application.
 
   \item Le système affiche alors une barre de navigation latérale comportant un
     bouton \say{Créer un arbre} ainsi qu’une liste d’arbres généalogiques déjà
@@ -633,7 +634,7 @@ et desire gérer un arbre généalogique.
       \item Visualiser un arbre généalogique existant.
     \end{itemize}
 
-  \item Si le membre décide de créer un nouvel arbre généalogique :
+  \item Si le membre décide de créer un nouvel arbre généalogique : (A1)
     \begin{enumerate}
       \item il doit cliquer sur le bouton \say{Créer un nouvel arbre};
       \item le système affiche une fenêtre où il devra entrer un nom et un type(publique, privé)
@@ -643,7 +644,7 @@ et desire gérer un arbre généalogique.
         généalogiques du membre.
     \end{enumerate}
 
-  \item  Si le membre décide de modifier un arbre généalogique existant :
+  \item  Si le membre décide de modifier un arbre généalogique existant : (A2)
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale.;
       \item le système affiche alors les détails de l’arbre généalogique sélectionné;
@@ -674,14 +675,14 @@ et desire gérer un arbre généalogique.
       \item le système sauvegarde toutes les modifications apportées à l’arbre généalogique.
     \end{enumerate}
 
-  \item Si le membre souhaite consulter, un arbre généalogique existant :
+  \item Si le membre souhaite consulter, un arbre généalogique existant : (A3)
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale;
       \item le système affiche alors l’arbre généalogique sélectionné avec les
         informations sur ses membres et leurs liens.
     \end{enumerate}
 
-  \item Si le membre souhaite supprimer un arbre généalogique existant :
+  \item Si le membre souhaite supprimer un arbre généalogique existant : (A4)
     \begin{enumerate}
       \item il sélectionne l’arbre généalogique dans la barre de navigation latérale;
       \item le système demande une confirmation avant de procéder à la
@@ -697,7 +698,7 @@ et desire gérer un arbre généalogique.
 % \subsubsection*{Scénarios alternatifs}
 
 \begin{enumerate}
-    \item \textbf{Scénario alternatif pour la création d'un arbre généalogique :}
+    \item \textbf{A1}
     \begin{itemize}
         \item \textbf{Étape 4a :} Le membre tente de créer un arbre
           généalogique mais ne saisit pas un nom valide ou ne choisit pas un type.
@@ -708,7 +709,7 @@ et desire gérer un arbre généalogique.
         Le scénario reprend à l'étape 4c.
     \end{itemize}
 
-    \item \textbf{Scénario alternatif pour la modification d'un arbre généalogique :}
+    \item \textbf{A2}
     \begin{itemize}
         \item \textbf{Étape 5a :} Le membre laisse des champs obligatoires vides.
         \begin{itemize}
@@ -717,7 +718,7 @@ et desire gérer un arbre généalogique.
         Le scénario reprend à l'étape 5c.
     \end{itemize}
 
-  \item \textbf{Scénario alternatif pour la visualisation d'un arbre généalogique :}
+  \item \textbf{A3}
     \begin{itemize}
       \item \textbf{Étape 6a :} Le membre tente de visualiser un arbre
         généalogique mais celui-ci contient des erreurs de données (ex. : relations incorrectes).
@@ -728,7 +729,7 @@ et desire gérer un arbre généalogique.
         Le scénario reprend à l'étape 6a.
     \end{itemize}
 
-    \item \textbf{Scénario alternatif pour la suppression d'un arbre généalogique :}
+    \item \textbf{A4}
     \begin{itemize}
         \item \textbf{Étape 7a :} Le membre sélectionne un arbre généalogique à supprimer mais change d'avis et annule l'opération.
         \begin{itemize}
@@ -763,7 +764,7 @@ interactions impliquées dans le cas d’utilisation \say{Gérer un arbre géné
 
 \textbf{Date :} 15/04/2024
 
-\textbf{Version :} 1.0
+\textbf{Version :} 1.3
 
 
 \textbf{Description :} Ce cas d’utilisation permet au créateur d'arbre d'accorder,
@@ -802,7 +803,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
       \item Révoquer les droits d'accès pour un membre existant.
     \end{itemize}
 
-  \item Si le créateur d'arbre décide d'ajouter des droits d'accès pour un nouveau membre :
+  \item Si le créateur d'arbre décide d'ajouter des droits d'accès pour un nouveau membre : (A1)
     \begin{enumerate}
       \item il doit cliquer sur le bouton \say{Ajouter un membre};
       \item le système affiche une fenêtre où il devra entrer l'identifiant du
@@ -813,7 +814,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
         jour la liste des membres ayant accès à l'arbre généalogique.
     \end{enumerate}
 
-  \item Si le créateur d'arbre décide de modifier les droits d'accès d'un membre existant :
+  \item Si le créateur d'arbre décide de modifier les droits d'accès d'un membre existant : (A2)
     \begin{enumerate}
       \item il sélectionne le membre dans la liste;
       \item le système affiche alors les droits actuels du membre sélectionné;
@@ -821,7 +822,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
       \item le système enregistre les modifications apportées aux droits d'accès.
     \end{enumerate}
 
-  \item Si le créateur d'arbre souhaite révoquer les droits d'accès d'un membre existant :
+  \item Si le créateur d'arbre souhaite révoquer les droits d'accès d'un membre existant : (A3)
     \begin{enumerate}
       \item il sélectionne le membre dans la liste;
       \item le système demande une confirmation avant de procéder à la révocation des droits d'accès;
@@ -833,7 +834,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
 \textbf{Scénario alternatif :}
 
 \begin{enumerate}
-    \item \textbf{Scénario alternatif pour l'ajout des droits d'accès :}
+    \item \textbf{A1}
     \begin{itemize}
         \item \textbf{Étape 6a :} Le créateur d'arbre tente d'ajouter un membre
           mais ne saisit pas un identifiant valide ou ne choisit pas un niveau d'accès.
@@ -844,7 +845,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
         Le scénario reprend à l'étape 6c.
     \end{itemize}
 
-    \item \textbf{Scénario alternatif pour la modification des droits d'accès :}
+    \item \textbf{A2}
     \begin{itemize}
         \item \textbf{Étape 7a :} Le créateur d'arbre tente de modifier les droits
           d'accès mais laisse des champs obligatoires vides.
@@ -854,7 +855,7 @@ plateforme et désire gérer les droits d'accès à un arbre généalogique.
         Le scénario reprend à l'étape 7c.
     \end{itemize}
 
-    \item \textbf{Scénario alternatif pour la révocation des droits d'accès :}
+    \item \textbf{A3}
     \begin{itemize}
         \item \textbf{Étape 8a :} Le créateur d'arbre sélectionne un membre à
           révoquer mais change d'avis et annule l'opération.
@@ -1126,7 +1127,7 @@ de la solution logicielle.
     \umluniassoc[mult1=1, pos1=0.7, mult2=*, pos2=0.3]{Membre}{Genre}
 
   \end{tikzpicture}
-  \caption{Diagramme de classe du système mis à jour avec opérations}
+  \caption{Diagramme de classe du système}
 \end{figure}
 
 
