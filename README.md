@@ -6,8 +6,8 @@
 collaborative et le partage d'arbres généalogiques à Mazala-Firm
 
 ## Auteurs
-* Samuel Nandi - https://github.com/Ssnnee
-* Frédy ONIANGUE-DESO - https://github.com/cooger17
+* [Samuel Nandi](https://github.com/Ssnnee)
+* [Frédy ONIANGUE-DESO](https://github.com/cooger17)
 
 
 ## Contexte
